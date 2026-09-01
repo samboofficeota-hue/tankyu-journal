@@ -163,3 +163,30 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .teacher-existing-comment h3 span{background:var(--coral-deep)!important}
 .teacher-existing-comment p{background:#fff4ef;border-color:#f4c3b4}
 #teacher-feedback-dialog .eyebrow,#teacher-comment-dialog .eyebrow{color:var(--coral-deep)}
+
+/* ─── スペーシング／STEP見出し（2026-09-01）───────────────
+   STEP見出しとサブタイトルを1行に。全体を少し詰める。 */
+.form-section{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px;margin:18px 0 6px;padding:0;border-left:0}
+.form-section .section-label{white-space:nowrap;margin:0;color:var(--teal-deep)}
+.form-section .section-note{margin:0;color:var(--muted)}
+.journal-page form>.form-section:first-child{margin-top:0}
+.lesson-header{margin-bottom:12px}
+.intro-card{margin-bottom:18px}
+.question{padding:12px 0}
+
+/* ─── A4タテ 1枚に寄せる：2カラム＋余白圧縮（無理な時は自然に次ページへ）─── */
+@media print{
+  @page{size:A4 portrait;margin:10mm}
+  .journal-page form{display:grid!important;grid-template-columns:1fr 1fr!important;column-gap:7mm!important;row-gap:0!important}
+  .journal-page form>.form-section{grid-column:1/-1!important}
+  .teacher-record{display:grid!important;grid-template-columns:1fr 1fr!important;column-gap:7mm!important}
+  .teacher-record .form-section{grid-column:1/-1!important}
+  .form-section{display:flex!important;flex-wrap:wrap!important;align-items:baseline!important;gap:8px!important;margin:3mm 0 1mm!important;padding:0!important;border-left:0!important}
+  .form-section .section-note{font-size:8pt!important}
+  .question,.teacher-answer{padding:1.6mm 0!important}
+  .question legend,.teacher-answer h3{font-size:10pt!important;margin:0 0 1mm!important}
+  .question textarea,.short-answer,.teacher-answer p{font-size:9.5pt!important;line-height:1.5!important;padding:1.5mm!important}
+  .lesson-header{margin:0 0 3mm!important}
+  .lesson-header h2{font-size:14pt!important}
+  .intro-card{display:none!important}
+}

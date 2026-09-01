@@ -161,7 +161,7 @@
       if (!res || !res.ok) { $('#load-status').hidden = false; $('#load-status').textContent = '読み込みに失敗しました：' + ((res && res.error) || ''); return; }
       data = res;
       const nm = (res.student && res.student.name) || '';
-      $('#student-name-label').textContent = nm || `${student.no}番`;
+      $('#student-name-label').textContent = nm || '（お名前）';
       renderSession();
       restoreDraft();
     })

@@ -29,7 +29,7 @@
     const k = key();
     $('#teacher-session').textContent = meta.eyebrow;
     $('#teacher-title').textContent = meta.title;
-    const nm = (data && data.student && data.student.name) || `${k.no}番`;
+    const nm = (data && data.student && data.student.name) || '（お名前）';
     $('#student-summary').textContent = `${k.grade}年 ${k.cls}組 ${k.no}番（${nm}）の記録です。生徒の言葉を読みながら、次の一歩につながるコメントを残します。`;
     $('#comment-target').textContent = `${k.grade}年 ${k.cls}組 ${k.no}番へのコメント`;
 
