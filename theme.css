@@ -182,16 +182,17 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 /* ============ 縦（天地）リズム＝1つのルールに集約 ============
    行間の基準はグリッドの row-gap（=v-md）。ブロック間=v-lg、STEP群間=v-xl。
    STEP見出しはインラインで1行、上に区切り線。 */
-.journal-page form{row-gap:var(--v-md)}        /* 質問どうしの縦間隔の基準 */
-.lesson-header{margin:0 0 var(--v-lg)}          /* タイトル ↔ カード */
-.intro-card{margin:0 0 var(--v-lg)}             /* カード ↔ 最初のSTEP */
-.form-section{display:block;margin:var(--v-md) 0 0;padding:var(--v-sm) 0 0;border-left:0;border-top:1px solid var(--line)}
+/* 画面はゆったり（やさしさ優先）。質問間=lg、STEP群=xl、ブロック=xl。印刷だけ別途詰める。 */
+.journal-page form{row-gap:var(--v-lg)}         /* 質問どうしの縦間隔（ゆったり） */
+.lesson-header{margin:0 0 var(--v-xl)}          /* タイトル ↔ カード */
+.intro-card{margin:0 0 var(--v-xl)}             /* カード ↔ 最初のSTEP */
+.form-section{display:block;margin:var(--v-md) 0 0;padding:var(--v-md) 0 0;border-left:0;border-top:1px solid var(--line)}
 .form-section .section-label{display:inline;margin:0;color:var(--teal-deep);font-weight:700}
 .form-section .section-note{display:inline;margin:0 0 0 12px;color:var(--muted)}
 .journal-page form>.form-section:first-child{margin-top:0}   /* 見出し↔STEP1にも線（row-gapで間隔確保） */
 .question{padding:0;margin:0;border-top:0}       /* 各質問の横線は不要。間隔は row-gap に一任 */
-.question legend{margin:0 0 var(--v-xs)}
-.help{margin:0 0 var(--v-xs)}
+.question legend{margin:0 0 var(--v-sm)}
+.help{margin:0 0 var(--v-sm)}
 .question textarea,.short-answer{margin-top:0}
 
 /* ─── A4タテ 1枚に寄せる：2カラム＋余白圧縮（無理な時は自然に次ページへ）─── */
