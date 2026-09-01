@@ -165,14 +165,16 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 #teacher-feedback-dialog .eyebrow,#teacher-comment-dialog .eyebrow{color:var(--coral-deep)}
 
 /* ─── スペーシング／STEP見出し（2026-09-01）───────────────
-   STEP見出しとサブタイトルを1行に。全体を少し詰める。 */
-.form-section{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px;margin:18px 0 6px;padding:0;border-left:0}
+   STEP見出しとサブを1行に。各質問の横線は無くし、STEPの間に線を引く。 */
+.form-section{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px;
+  margin:20px 0 8px;padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
 .form-section .section-label{white-space:nowrap;margin:0;color:var(--teal-deep)}
 .form-section .section-note{margin:0;color:var(--muted)}
-.journal-page form>.form-section:first-child{margin-top:0}
+.journal-page form>.form-section:first-child{margin-top:0;padding-top:0;border-top:0}
 .lesson-header{margin-bottom:12px}
 .intro-card{margin-bottom:18px}
-.question{padding:12px 0}
+.question{padding:10px 0;border-top:0}   /* 各質問の横線は不要 */
+.form-section+.question{padding-top:4px}
 
 /* ─── A4タテ 1枚に寄せる：2カラム＋余白圧縮（無理な時は自然に次ページへ）─── */
 @media print{
@@ -189,4 +191,15 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
   .lesson-header{margin:0 0 3mm!important}
   .lesson-header h2{font-size:14pt!important}
   .intro-card{display:none!important}
+}
+
+/* フッター：保存メッセージをボタンの近く（右側にまとめる） */
+.actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+.actions #save-status{margin:0;color:var(--muted);font-size:13px;order:0}
+
+/* 印刷：各質問の横線を消し、STEPの間にだけ線 */
+@media print{
+  .question,.teacher-answer{border-top:0!important}
+  .form-section{border-top:1px solid #d5dbd9!important;padding-top:2mm!important}
+  .journal-page form>.form-section:first-child{border-top:0!important;padding-top:0!important}
 }
