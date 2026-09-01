@@ -66,8 +66,8 @@
       Object.keys(d).forEach(function (k) { row['col' + k] = d[k]; });
       return Promise.resolve({ ok: true, rows: [row] });
     }
-    var url = BASE + '/list?grade=' + encodeURIComponent(o.grade) +
-      '&cls=' + encodeURIComponent(o.cls) + '&session=' + encodeURIComponent(o.session);
+    var url = BASE + '/list?grade=' + encodeURIComponent(o.grade) + '&cls=' + encodeURIComponent(o.cls) +
+      (o.session ? '&session=' + encodeURIComponent(o.session) : '');   // session 省略でクラス全件
     return fetch(url, { method: 'GET', headers: { 'accept': 'application/json' } }).then(function (r) { return r.json(); });
   }
 

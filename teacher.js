@@ -78,11 +78,31 @@
     }).catch((err) => { $('#teacher-load-status').hidden = false; $('#teacher-load-status').textContent = '通信エラー：' + err; });
   }
 
-  // 生徒送り（番号 ±1）
+  // クラスの名簿（現存する番号の並び）。回り込みナビに使う。
+  let roster = [];
+  function loadRoster() {
+    API.listClass({ grade: curGrade, cls: curCls }).then((res) => {
+      const nums = (res && res.rows ? res.rows : []).map((r) => parseInt(r.no, 10)).filter((n) => !isNaN(n));
+      roster = Array.from(new Set(nums)).sort((a, b) => a - b);
+    }).catch(() => { roster = []; });
+  }
+
+  // 生徒送り（現存する番号を順に。端は回り込む＝01の左で最後の生徒へ）
   function stepStudent(dir) {
     const el = $('#number-input');
-    const n = parseInt(el.value, 10);
-    el.value = String(Math.max(1, (isNaN(n) ? 1 : n) + dir));
+    const cur = parseInt(el.value, 10);
+    if (roster.length) {
+      let idx = roster.indexOf(cur);
+      if (idx < 0) {
+        if (dir > 0) { idx = roster.findIndex((n) => n > cur); if (idx < 0) idx = 0; }
+        else { idx = roster.length - 1; for (let i = roster.length - 1; i >= 0; i--) { if (roster[i] < cur) { idx = i; break; } } }
+      } else {
+        idx = (idx + dir + roster.length) % roster.length;   // 端で回り込み
+      }
+      el.value = String(roster[idx]);
+    } else {
+      el.value = String(Math.max(1, (isNaN(cur) ? 1 : cur) + dir));
+    }
     load();
   }
 
@@ -90,10 +110,10 @@
   document.querySelectorAll('#grade-seg button').forEach((b) => b.addEventListener('click', () => {
     curGrade = b.dataset.grade;
     if (curCls === 'D' && curGrade !== '1') curCls = 'A';  // D組は1年のみ→他学年ならAへ
-    paintPicker(); load();
+    paintPicker(); loadRoster(); load();
   }));
   document.querySelectorAll('#class-seg button').forEach((b) => b.addEventListener('click', () => {
-    curCls = b.dataset.cls; paintPicker(); load();
+    curCls = b.dataset.cls; paintPicker(); loadRoster(); load();
   }));
   $('#number-input').addEventListener('change', load);
   $('#number-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') load(); });
@@ -141,5 +161,6 @@
   // 初期表示
   paintTabs();
   paintPicker();
+  loadRoster();
   load();
 })();

@@ -22,24 +22,21 @@
           <li><button type="button" data-session="D">D</button></li>
         </ol>
         <div class="teacher-picker">
-          <div class="picker-group"><span class="picker-label">学年</span>
-            <div class="seg" id="grade-seg" role="group" aria-label="学年">
-              <button type="button" data-grade="1" class="active">1</button>
-              <button type="button" data-grade="2">2</button>
-              <button type="button" data-grade="3">3</button>
-            </div>
+          <span class="picker-label">学年</span>
+          <div class="seg" id="grade-seg" role="group" aria-label="学年">
+            <button type="button" data-grade="1" class="active">1</button>
+            <button type="button" data-grade="2">2</button>
+            <button type="button" data-grade="3">3</button>
           </div>
-          <div class="picker-group"><span class="picker-label">組</span>
-            <div class="seg" id="class-seg" role="group" aria-label="組">
-              <button type="button" data-cls="A" class="active">A</button>
-              <button type="button" data-cls="B">B</button>
-              <button type="button" data-cls="C">C</button>
-              <button type="button" data-cls="D">D</button>
-            </div>
+          <span class="picker-label">組</span>
+          <div class="seg" id="class-seg" role="group" aria-label="組">
+            <button type="button" data-cls="A" class="active">A</button>
+            <button type="button" data-cls="B">B</button>
+            <button type="button" data-cls="C">C</button>
+            <button type="button" data-cls="D">D</button>
           </div>
-          <label class="picker-group picker-num"><span class="picker-label">番号</span>
-            <input id="number-input" class="teacher-key number-input" inputmode="numeric" maxlength="3" value="1" />
-          </label>
+          <span class="picker-label">番号</span>
+          <input id="number-input" class="number-input" inputmode="numeric" maxlength="3" value="1" aria-label="番号" />
         </div>
       </header>
 

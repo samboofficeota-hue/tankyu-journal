@@ -306,19 +306,26 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .comment-send{background:var(--coral-deep);border-color:var(--coral-deep)}
 .comment-send:hover{background:#cf4f34}
 
-/* 左右の半透明ナビはティール寄りに（design-refreshの .student-float-nav を上書き） */
-.teacher-page .student-float-nav{color:var(--teal-deep);border-color:#30bca755;background:#ffffffb0}
-.teacher-page .student-float-nav:hover{background:var(--teal-50)}
+/* 左右ナビ：枠なし・白・薄いブルーの矢印・サイズ2倍 */
+.teacher-page .student-float-nav{
+  width:92px;height:104px;border:0;background:#fff;border-radius:var(--r-lg);
+  color:#8fc9ea;font-size:52px;line-height:1;box-shadow:0 6px 20px rgba(16,55,49,.12);backdrop-filter:none}
+.teacher-page .student-float-nav:hover{color:#6fb7e0;background:#fff}
+.teacher-page .student-float-nav--previous{left:10px}
+.teacher-page .student-float-nav--next{right:10px}
 
-/* ─── 先生ヘッダー：学年/組をセグメントボタンに（2026-09-01）─── */
-.teacher-picker{display:flex;align-items:center;gap:14px;margin-left:auto;flex-wrap:wrap}
-.picker-group{display:flex;align-items:center;gap:6px}
-.picker-label{color:var(--muted);font-size:10px;font-weight:800}
+/* ─── 先生ヘッダー：学年/組=セグメントボタン、番号=横に。全部 高さ30で1行に揃える ─── */
+.teacher-picker{display:flex;align-items:center;gap:8px;margin-left:auto;flex-wrap:wrap}
+.teacher-picker .picker-label{color:var(--muted);font-size:11px;font-weight:800;line-height:30px}
 .seg{display:inline-flex;gap:4px}
-.seg button{min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;cursor:pointer;
+.teacher-picker .seg button,
+.teacher-picker .number-input{
+  height:30px;box-sizing:border-box;margin:0;vertical-align:middle;
   border:1px solid var(--teal-200);border-radius:var(--r-sm);background:#fff;color:var(--teal-deep);
-  font:800 13px "Noto Sans JP",sans-serif;transition:background .15s,border-color .15s}
-.seg button:hover{background:var(--teal-50)}
-.seg button.active{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
-.seg button[hidden]{display:none}
-.picker-num .number-input{width:56px;height:30px}
+  font:800 14px "Noto Sans JP",sans-serif;text-align:center;cursor:pointer;transition:background .15s,border-color .15s}
+.teacher-picker .seg button{min-width:30px;padding:0 8px;font-size:13px}
+.teacher-picker .seg button:hover{background:var(--teal-50)}
+.teacher-picker .seg button.active{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+.teacher-picker .seg button[hidden]{display:none}
+.teacher-picker .number-input{width:52px;padding:0 6px;color:var(--ink);cursor:text}
+.teacher-picker .number-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(48,188,167,.22);outline:none}
