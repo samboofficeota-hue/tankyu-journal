@@ -19,7 +19,8 @@
   --amber:       #F6C445;   /* お祝い・ハイライト */
   --amber-soft:  #FCEBB6;
   --amber-ink:   #5A4500;
-  --coralc:      #F2795F;   /* 先生系の差し色 */
+  --coralc:      #F2795F;   /* コーラル（アクセント・境界・見出し） */
+  --coral-deep:  #E15A3C;   /* 白文字が乗る濃さ（選択中タブ・番号バッジ） */
   --danger:      #E63946;
 
   --ink:   #1F2937;         /* 本文 */
@@ -135,19 +136,30 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .teacher-login span{color:var(--teal-deep)}
 
 /* ─── 生徒ページ：A〜Dタブ／番号バッジ をガイドラインに沿って（2026-09-01）─── */
-/* A〜D タブ：楕円の中に文字。ふだんはアウトライン、選択中だけ塗り（シンプル） */
+/* A〜D タブ：角丸の四角い箱ひとつ（入れ子なし）。ふだんは白＋ティール枠、選択中はコーラル塗り。
+   中身は <button>（生徒ページはJS生成）なので、li は素通しにして button/a を箱にする。 */
 .header-steps{gap:8px}
-.header-steps li{min-width:38px;height:30px;padding:0;border:1px solid var(--teal-200);border-radius:var(--r-pill);
-  background:#fff;color:var(--teal-deep);font-weight:700;transition:background .15s,border-color .15s}
-.header-steps li a{display:grid;place-items:center;width:100%;height:100%;border-radius:inherit;color:inherit;text-decoration:none}
-.header-steps li:hover{background:var(--teal-50)}
-.header-steps li.active{background:var(--teal-deep);border-color:var(--teal-deep)}
-.header-steps li.active,.header-steps li.active a{color:#fff}
+.header-steps li{min-width:0;height:auto;padding:0;border:0;background:none}
+.header-steps li button,.header-steps li a{
+  display:grid;place-items:center;box-sizing:border-box;
+  min-width:40px;height:30px;padding:0 8px;
+  border:1px solid var(--teal-200);border-radius:var(--r-sm);
+  background:#fff;color:var(--teal-deep);
+  font:800 13px "Noto Sans JP",sans-serif;letter-spacing:0;
+  cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s}
+.header-steps li button:hover,.header-steps li a:hover{background:var(--teal-50)}
+.header-steps li.active button,.header-steps li.active a{background:var(--coral-deep);border-color:var(--coral-deep);color:#fff}
 
-/* 01〜09 番号バッジ：丸みのある柔らかいピル（白文字×ティール） */
-.question legend span{
+/* 01〜09 番号（ノンブル）バッジ：コーラルの丸みピル（白文字） */
+.question legend span,.teacher-answer h3 span{
   display:inline-grid;place-items:center;vertical-align:middle;
   min-width:28px;height:23px;padding:0 8px;margin-right:2px;
-  background:var(--teal-deep);color:#fff;border-radius:var(--r-pill);
+  background:var(--coral-deep);color:#fff;border-radius:var(--r-pill);
   font-size:11px;font-weight:800;letter-spacing:.02em;
 }
+/* 先生のコメントはコーラルで統一（生徒側の「先生からのコメント」導線・先生側の既存コメント） */
+.teacher-comment-trigger{border-color:var(--coralc);color:var(--coral-deep)}
+.teacher-comment-trigger:hover{background:#fff3ef}
+.teacher-existing-comment h3 span{background:var(--coral-deep)!important}
+.teacher-existing-comment p{background:#fff4ef;border-color:#f4c3b4}
+#teacher-feedback-dialog .eyebrow,#teacher-comment-dialog .eyebrow{color:var(--coral-deep)}
