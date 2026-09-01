@@ -8,4 +8,4 @@ compatibility_date = "2024-11-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "tankyu-journal"
-database_id = "tankyu-journal-local"   # ★ 本番は wrangler d1 create の出力(UUID)で差し替え
+database_id = "3e20a23c-de5d-4338-97a8-965ad878fdb7"   # 本番D1
