@@ -149,8 +149,9 @@
     const grid = $('#peers-grid');
     grid.innerHTML = '<p class="peers-note">読み込み中…</p>';
     dlg.showModal();
-    const prim = meta.type === 1 ? 13 : 5;   // テーマ列
-    const sec = meta.type === 1 ? 5 : 7;      // 副見出し（つぶやき / 目標）
+    // カードに表示する設問＝STEP1/2/3の頭（01・04・09）。type3は09が無いので08。
+    const targetNs = meta.type === 1 ? ['01', '04', '09'] : ['01', '04', '08'];
+    const cardFields = (schema.fields[meta.type] || []).filter((f) => f.col && targetNs.indexOf(f.n) >= 0);
     API.listClass({ grade: student.grade, cls: student.cls, session: current }).then((res) => {
       if (!res || !res.ok) { grid.innerHTML = '<p class="peers-note">読み込みに失敗しました。</p>'; return; }
       const rows = (res.rows || []).filter((r) => [5, 6, 7, 8, 9, 10, 11, 12, 13].some((c) => (r['col' + c] || '') !== ''));
@@ -158,10 +159,12 @@
       if (!rows.length) { grid.innerHTML = '<p class="peers-note">この回の記録はまだありません。</p>'; return; }
       grid.innerHTML = rows.map((r) => {
         const name = r.name || '（お名前）';
-        const theme = r['col' + prim] || '（テーマ未記入）';
-        const sub = r['col' + sec] || '';
         const me = String(r.no) === String(student.no) ? ' is-me' : '';
-        return `<article class="peer-card${me}"><div class="peer-head"><span class="peer-no">${esc(r.no)}</span><b>${esc(name)}</b></div><p class="peer-theme">${esc(theme)}</p>${sub ? `<p class="peer-sub">${esc(sub)}</p>` : ''}</article>`;
+        const items = cardFields.map((f) => {
+          const v = r['col' + f.col] || '';
+          return `<div class="peer-item"><span class="peer-n">${f.n}</span><span class="peer-v${v ? '' : ' empty'}">${v ? esc(v) : '—'}</span></div>`;
+        }).join('');
+        return `<article class="peer-card${me}"><div class="peer-head"><span class="peer-no">${esc(r.no)}</span><b>${esc(name)}</b></div>${items}</article>`;
       }).join('');
     }).catch((e) => { grid.innerHTML = '<p class="peers-note">通信エラー：' + e + '</p>'; });
   });
