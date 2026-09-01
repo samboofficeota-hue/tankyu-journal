@@ -2,3 +2,4 @@
 _legacy/
 node_modules/
 .vercel
+.wrangler/
