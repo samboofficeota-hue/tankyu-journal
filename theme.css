@@ -41,6 +41,14 @@
   --lh-body: 1.8;
   --track: 0.04em;
 
+  /* ---- 天地（縦）のスペーシング尺度（1つのルールに集約）----
+     xs=要素内 / sm=見出し内 / md=質問間 / lg=ブロック間 / xl=STEP群間 */
+  --v-xs: 6px;
+  --v-sm: 10px;
+  --v-md: 16px;
+  --v-lg: 24px;
+  --v-xl: 32px;
+
   /* ---- 既存の変数名を新パレットへ再マッピング（全画面に波及）---- */
   --green:      var(--teal-deep);
   --green-dark: var(--teal-deepest);
@@ -150,13 +158,15 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .header-steps li button:hover,.header-steps li a:hover{background:var(--teal-50)}
 .header-steps li.active button,.header-steps li.active a{background:var(--coral-deep);border-color:var(--coral-deep);color:#fff}
 
-/* 01〜09 番号（ノンブル）バッジ：コーラルの丸みピル（白文字） */
+/* 01〜09 番号バッジ：薄緑（ミント）の丸みピル＋濃い緑の数字 */
 .question legend span,.teacher-answer h3 span{
   display:inline-grid;place-items:center;vertical-align:middle;
   min-width:28px;height:23px;padding:0 8px;margin-right:2px;
-  background:var(--coral-deep);color:#fff;border-radius:var(--r-pill);
+  background:var(--teal-100);color:var(--teal-deepest);border-radius:var(--r-pill);
   font-size:11px;font-weight:800;letter-spacing:.02em;
 }
+/* SESSIONラベル（回と日付）はコーラル */
+#session-eyebrow,#teacher-session{color:var(--coral-deep)}
 /* 先生のコメントはコーラルで統一（生徒側の「先生からのコメント」導線・先生側の既存コメント） */
 .teacher-comment-trigger{border-color:var(--coralc);color:var(--coral-deep)}
 .teacher-comment-trigger:hover{background:#fff3ef}
@@ -166,15 +176,20 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 
 /* ─── スペーシング／STEP見出し（2026-09-01）───────────────
    STEP見出しとサブを1行に。各質問の横線は無くし、STEPの間に線を引く。 */
-/* STEP見出し＋サブは「見出しに続けてサブ」＝インラインで1行に。上に区切り線。 */
-.form-section{display:block;margin:20px 0 8px;padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
+/* ============ 縦（天地）リズム＝1つのルールに集約 ============
+   行間の基準はグリッドの row-gap（=v-md）。ブロック間=v-lg、STEP群間=v-xl。
+   STEP見出しはインラインで1行、上に区切り線。 */
+.journal-page form{row-gap:var(--v-md)}        /* 質問どうしの縦間隔の基準 */
+.lesson-header{margin:0 0 var(--v-lg)}          /* タイトル ↔ カード */
+.intro-card{margin:0 0 var(--v-lg)}             /* カード ↔ 最初のSTEP */
+.form-section{display:block;margin:var(--v-md) 0 0;padding:var(--v-sm) 0 0;border-left:0;border-top:1px solid var(--line)}
 .form-section .section-label{display:inline;margin:0;color:var(--teal-deep);font-weight:700}
 .form-section .section-note{display:inline;margin:0 0 0 12px;color:var(--muted)}
-.journal-page form>.form-section:first-child{margin-top:6px}   /* 見出しとSTEP1の間にも線を残す */
-.lesson-header{margin-bottom:12px}
-.intro-card{margin-bottom:18px}
-.question{padding:10px 0;border-top:0}   /* 各質問の横線は不要 */
-.form-section+.question{padding-top:6px}
+.journal-page form>.form-section:first-child{margin-top:0}   /* 見出し↔STEP1にも線（row-gapで間隔確保） */
+.question{padding:0;margin:0;border-top:0}       /* 各質問の横線は不要。間隔は row-gap に一任 */
+.question legend{margin:0 0 var(--v-xs)}
+.help{margin:0 0 var(--v-xs)}
+.question textarea,.short-answer{margin-top:0}
 
 /* ─── A4タテ 1枚に寄せる：2カラム＋余白圧縮（無理な時は自然に次ページへ）─── */
 @media print{
@@ -194,7 +209,7 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 }
 
 /* フッター：保存メッセージをボタンの近く（右側にまとめる） */
-.actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+.actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;margin-top:var(--v-sm);border-top:1px solid var(--line);padding-top:var(--v-md)}
 .actions #save-status{margin:0;color:var(--muted);font-size:13px;order:0}
 
 /* 印刷：各質問の横線を消し、STEPの間にだけ線 */
