@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My 探究ジャーナル</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./login.html" aria-label="My 探究ジャーナル ホーム"><span class="brand-mark">✦</span> My 探究ジャーナル</a>
+        <ol class="header-steps" id="session-steps" aria-label="探究の回"></ol>
+        <div class="student-identity" id="student-identity"></div>
+      </header>
+
+      <main>
+        <section class="view active">
+          <div class="student-layout">
+            <section class="journal-page">
+              <div class="lesson-header">
+                <div>
+                  <p class="eyebrow" id="session-eyebrow">読み込み中…</p>
+                  <h2 id="session-title"></h2>
+                </div>
+                <button type="button" class="teacher-comment-trigger" id="teacher-comment-trigger" hidden>先生からのコメント</button>
+              </div>
+              <div class="intro-card">
+                <span class="spark">✦</span>
+                <p id="session-intro"></p>
+              </div>
+
+              <p id="load-status" class="load-status" aria-live="polite" hidden></p>
+
+              <form id="journal-form"></form>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="memory-dialog">
+      <button class="close" aria-label="閉じる">×</button>
+      <p class="eyebrow" id="memory-eyebrow">PREVIOUS NOTE</p>
+      <h2>前回の私の言葉</h2>
+      <blockquote id="memory-text"></blockquote>
+      <p class="memory-note">前の自分が残した言葉。変わっても、変わらなくても、どちらも探究の途中です。</p>
+    </dialog>
+    <dialog id="teacher-feedback-dialog">
+      <button class="close" aria-label="閉じる">×</button>
+      <p class="eyebrow coral">TEACHER COMMENT</p>
+      <h2>先生からのコメント</h2>
+      <p id="teacher-feedback-text"></p>
+    </dialog>
+    <dialog id="submit-dialog">
+      <div class="celebrate">✦</div>
+      <p class="eyebrow coral">JOURNAL SAVED</p>
+      <h2 id="submit-title">いい記録が残せたね。</h2>
+      <p id="submit-body">今日の気づきは、次の「なぜ？」の種になります。先生にも届きました。</p>
+      <button class="primary close-dialog">記録を見返す</button>
+    </dialog>
+
+    <script src="./config.js"></script>
+    <script src="./schema.js"></script>
+    <script src="./api.js"></script>
+    <script src="./student.js"></script>
+  </body>
+</html>
