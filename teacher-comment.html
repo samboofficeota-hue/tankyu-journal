@@ -21,6 +21,7 @@
           <li><button type="button" data-session="C">C</button></li>
           <li><button type="button" data-session="D">D</button></li>
         </ol>
+        <button type="button" class="peers-btn" id="peers-btn">👥 みんなの今</button>
         <div class="teacher-picker">
           <span class="picker-label">学年</span>
           <div class="seg" id="grade-seg" role="group" aria-label="学年">
@@ -38,6 +39,7 @@
           <span class="picker-label">番号</span>
           <input id="number-input" class="number-input" inputmode="numeric" maxlength="3" value="1" aria-label="番号" />
         </div>
+        <a class="menu-back-btn" href="./teacher.html">☰ メニュー</a>
       </header>
 
       <main>
@@ -64,6 +66,13 @@
     <button class="student-float-nav student-float-nav--previous" id="float-previous" aria-label="前の生徒">‹<span>前の生徒</span></button>
     <button class="student-float-nav student-float-nav--next" id="float-next" aria-label="次の生徒"><span>次の生徒</span>›</button>
 
+    <dialog id="everyone-dialog">
+      <button class="close" aria-label="閉じる">×</button>
+      <p class="eyebrow">CLASS NOW</p>
+      <h2 id="everyone-title">みんなの今</h2>
+      <p class="everyone-sub" id="everyone-sub"></p>
+      <div class="peers-grid" id="peers-grid"></div>
+    </dialog>
     <dialog id="teacher-comment-dialog">
       <button class="close" aria-label="閉じる">×</button>
       <p class="eyebrow coral">TEACHER'S COMMENT</p>

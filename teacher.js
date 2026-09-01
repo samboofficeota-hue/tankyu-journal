@@ -158,6 +158,39 @@
     }).catch((err) => { btn.disabled = false; btn.textContent = 'これで送付'; $('#comment-status').textContent = '通信エラー：' + err; });
   });
 
+  // みんなの今：同じクラス・現在の回の全員（クリックでその生徒へジャンプ）
+  $('#peers-btn').addEventListener('click', () => {
+    const meta = schema.sessions[current];
+    const k = key();
+    const dlg = $('#everyone-dialog');
+    $('#everyone-title').textContent = `みんなの今（${current}）`;
+    $('#everyone-sub').textContent = `${k.grade}年 ${k.cls}組 ・ SESSION ${current}`;
+    const grid = $('#peers-grid');
+    grid.innerHTML = '<p class="peers-note">読み込み中…</p>';
+    dlg.showModal();
+    const targetNs = meta.type === 1 ? ['01', '04', '09'] : ['01', '04', '08'];
+    const cardFields = (schema.fields[meta.type] || []).filter((f) => f.col && targetNs.indexOf(f.n) >= 0);
+    API.listClass({ grade: k.grade, cls: k.cls, session: current }).then((res) => {
+      if (!res || !res.ok) { grid.innerHTML = '<p class="peers-note">読み込みに失敗しました。</p>'; return; }
+      const rows = (res.rows || []).filter((r) => [5, 6, 7, 8, 9, 10, 11, 12, 13].some((c) => (r['col' + c] || '') !== ''));
+      $('#everyone-sub').textContent = `${k.grade}年 ${k.cls}組 ・ SESSION ${current} ・ ${rows.length}人`;
+      if (!rows.length) { grid.innerHTML = '<p class="peers-note">この回の記録はまだありません。</p>'; return; }
+      grid.innerHTML = rows.map((r) => {
+        const name = r.name || '（お名前）';
+        const cur = String(r.no) === String(k.no) ? ' is-me' : '';
+        const items = cardFields.map((f) => {
+          const v = r['col' + f.col] || '';
+          return `<div class="peer-item"><span class="peer-n">${f.n}</span><span class="peer-v${v ? '' : ' empty'}">${v ? esc(v) : '—'}</span></div>`;
+        }).join('');
+        return `<button type="button" class="peer-card peer-card--btn${cur}" data-no="${esc(r.no)}"><div class="peer-head"><span class="peer-no">${esc(r.no)}</span><b>${esc(name)}</b></div>${items}</button>`;
+      }).join('');
+      grid.querySelectorAll('.peer-card--btn').forEach((b) => b.addEventListener('click', () => {
+        $('#number-input').value = b.dataset.no; dlg.close(); load();
+      }));
+    }).catch((e) => { grid.innerHTML = '<p class="peers-note">通信エラー：' + e + '</p>'; });
+  });
+  $('#everyone-dialog .close').addEventListener('click', () => $('#everyone-dialog').close());
+
   // 初期表示
   paintTabs();
   paintPicker();
