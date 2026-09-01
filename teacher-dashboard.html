@@ -11,22 +11,65 @@
     <link rel="stylesheet" href="./design-refresh.css" />
     <link rel="stylesheet" href="./theme.css" />
   </head>
-  <body class="teacher-menu-page">
+  <body class="teacher-page dashboard-page">
     <div class="app-shell">
       <header class="topbar">
         <a class="brand" href="./teacher.html"><span class="brand-mark">✦</span> My 探究ジャーナル</a>
-        <span class="topbar-role">ダッシュボード</span>
+        <ol class="header-steps" id="session-steps" aria-label="探究の回">
+          <li class="active"><button type="button" data-session="A" aria-current="page">A</button></li>
+          <li><button type="button" data-session="B">B</button></li>
+          <li><button type="button" data-session="C">C</button></li>
+          <li><button type="button" data-session="D">D</button></li>
+        </ol>
+        <div class="teacher-picker">
+          <span class="picker-label">学年</span>
+          <div class="seg" id="grade-seg" role="group" aria-label="学年">
+            <button type="button" data-grade="1" class="active">1</button>
+            <button type="button" data-grade="2">2</button>
+            <button type="button" data-grade="3">3</button>
+          </div>
+          <span class="picker-label">組</span>
+          <div class="seg" id="class-seg" role="group" aria-label="組">
+            <button type="button" data-cls="A" class="active">A</button>
+            <button type="button" data-cls="B">B</button>
+            <button type="button" data-cls="C">C</button>
+            <button type="button" data-cls="D">D</button>
+          </div>
+        </div>
+        <a class="menu-back-btn" href="./teacher.html">☰ メニュー</a>
       </header>
-      <main class="menu-main">
-        <p class="eyebrow">DASHBOARD</p>
-        <h1 class="menu-title">ダッシュボード</h1>
-        <p class="menu-lead">クラスの進み・提出状況を見る画面です。</p>
-        <div class="coming-soon">
-          <span class="menu-ico">📊</span>
-          <p>この画面はこれから作ります。<br />クラス別の提出状況・未提出者・コメント待ちの一覧をここに置く予定です。</p>
-          <a class="secondary back-btn" href="./teacher.html">← メニューに戻る</a>
+
+      <main>
+        <div class="dash-wrap">
+          <div class="dash-head">
+            <p class="eyebrow" id="dash-eyebrow">DASHBOARD</p>
+            <h1 id="dash-title">クラスの状況</h1>
+          </div>
+          <p id="dash-status" class="load-status" aria-live="polite" hidden></p>
+
+          <div class="kpi-row" id="kpi-row"></div>
+
+          <section class="dash-card">
+            <h2 class="dash-h2">記入の進み（この回）</h2>
+            <div class="progress" id="progress"></div>
+          </section>
+
+          <section class="dash-card">
+            <h2 class="dash-h2">回ごとの記入状況</h2>
+            <div class="session-bars" id="session-bars"></div>
+          </section>
+
+          <section class="dash-card">
+            <h2 class="dash-h2">生徒の状況（この回）</h2>
+            <div class="roster-grid" id="roster-grid"></div>
+          </section>
         </div>
       </main>
     </div>
+
+    <script src="./config.js"></script>
+    <script src="./schema.js"></script>
+    <script src="./api.js"></script>
+    <script src="./dashboard.js"></script>
   </body>
 </html>

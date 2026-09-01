@@ -339,3 +339,42 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .peer-card--btn{display:block;width:100%;text-align:left;font:inherit;cursor:pointer;
   transition:border-color .15s,box-shadow .15s,transform .12s}
 .peer-card--btn:hover{border-color:var(--teal);box-shadow:var(--shadow-card);transform:translateY(-1px)}
+
+/* ─── 先生ダッシュボード（2026-09-01・体裁）───────────────── */
+.dash-wrap{max-width:1100px;margin:0 auto;padding:28px 24px 64px}
+.dash-head .eyebrow{color:var(--teal-deep)}
+.dash-head #dash-title{margin:4px 0 0;font-size:26px}
+.dash-wrap .dash-card{margin-top:20px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow-card)}
+.dash-h2{margin:0 0 14px;font-size:15px;color:var(--ink)}
+/* KPIタイル */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.kpi{padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow-card)}
+.kpi-label{display:block;color:var(--muted);font-size:12px;font-weight:700}
+.kpi-val{display:block;margin-top:6px;font-size:30px;line-height:1;font-weight:800;color:var(--ink)}
+.kpi-val small{font-size:13px;font-weight:700;color:var(--muted);margin-left:3px}
+.kpi--teal{border-top:3px solid var(--teal)}
+.kpi--coral{border-top:3px solid var(--coralc)}
+.kpi--gray{border-top:3px solid var(--line)}
+/* 進捗バー */
+.bar{height:14px;border-radius:var(--r-pill);background:var(--teal-100);overflow:hidden}
+.bar-fill{height:100%;border-radius:inherit;background:var(--teal-deep);transition:width .4s ease}
+.bar-legend{margin-top:8px;color:var(--muted);font-size:13px}
+.bar-legend b{color:var(--ink);font-size:16px}
+/* 回ごと */
+.session-bars{display:grid;gap:12px}
+.sbar{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:12px}
+.sbar-name{display:grid;place-items:center;width:24px;height:24px;border-radius:var(--r-sm);background:var(--teal-50);color:var(--teal-deep);font-weight:800;font-size:12px}
+.sbar.is-active .sbar-name{background:var(--coral-deep);color:#fff}
+.sbar-num{color:var(--muted);font-size:12px;font-weight:700;min-width:40px;text-align:right}
+/* 生徒チップ */
+.roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.rchip{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
+.rchip-no{display:inline-grid;place-items:center;min-width:26px;height:22px;border-radius:var(--r-pill);font-size:11px;font-weight:800;background:var(--teal-100);color:var(--teal-deepest)}
+.rchip-st{font-size:11px;font-weight:700;color:var(--muted)}
+.rchip--filled{background:var(--teal-50);border-color:var(--teal-200)}
+.rchip--filled .rchip-st{color:var(--teal-deep)}
+.rchip--commented{background:#fff4ef;border-color:#f3c3b5}
+.rchip--commented .rchip-no{background:var(--coral-deep);color:#fff}
+.rchip--commented .rchip-st{color:var(--coral-deep)}
+.rchip--empty{opacity:.7}
+@media(max-width:720px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
