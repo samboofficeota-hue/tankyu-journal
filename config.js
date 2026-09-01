@@ -8,8 +8,8 @@
  * 書き込みは画面上だけ）。URL を入れた瞬間に、実スプレッドシート連動へ切り替わります。
  */
 window.JOURNAL_CONFIG = {
-  // 例: 'https://script.google.com/macros/s/AKfy.../exec'
-  API_URL: '',
+  // Apps Script ウェブアプリの /exec URL
+  API_URL: 'https://script.google.com/macros/s/AKfycbwIebgaDmmdbehtNJjXcMf5zzZdb9vdIRuBk7OdEUX9AVK1mlfV1T9f7uZangU-q8rz/exec',
   // Apps Script のスクリプトプロパティ WRITE_TOKEN と同じ文字列
-  WRITE_TOKEN: ''
+  WRITE_TOKEN: 'tankyu'
 };
