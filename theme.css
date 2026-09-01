@@ -166,15 +166,15 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 
 /* ─── スペーシング／STEP見出し（2026-09-01）───────────────
    STEP見出しとサブを1行に。各質問の横線は無くし、STEPの間に線を引く。 */
-.form-section{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px;
-  margin:20px 0 8px;padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
-.form-section .section-label{white-space:nowrap;margin:0;color:var(--teal-deep)}
-.form-section .section-note{margin:0;color:var(--muted)}
-.journal-page form>.form-section:first-child{margin-top:0;padding-top:0;border-top:0}
+/* STEP見出し＋サブは「見出しに続けてサブ」＝インラインで1行に。上に区切り線。 */
+.form-section{display:block;margin:20px 0 8px;padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
+.form-section .section-label{display:inline;margin:0;color:var(--teal-deep);font-weight:700}
+.form-section .section-note{display:inline;margin:0 0 0 12px;color:var(--muted)}
+.journal-page form>.form-section:first-child{margin-top:6px}   /* 見出しとSTEP1の間にも線を残す */
 .lesson-header{margin-bottom:12px}
 .intro-card{margin-bottom:18px}
 .question{padding:10px 0;border-top:0}   /* 各質問の横線は不要 */
-.form-section+.question{padding-top:4px}
+.form-section+.question{padding-top:6px}
 
 /* ─── A4タテ 1枚に寄せる：2カラム＋余白圧縮（無理な時は自然に次ページへ）─── */
 @media print{
