@@ -1,0 +1,107 @@
+/* =====================================================================
+   My 探究ジャーナル — デザイントークン & やさしさテーマ  (2026-09-01)
+   参考: team-mirai「みんなのRCV」のデザイン言語（ティール＋淡いtint面＋
+   やわらかいブラー影＋ゆったりした組版）を、中学生の探究に合わせて調整。
+   ★このファイルが色・型・余白・角丸・影の「決め事」の正本。
+     style.css / design-refresh.css の後に読み込み、既存の変数名を上書きする。
+   ===================================================================== */
+:root {
+  /* ---- Palette（ティール・オン白でのコントラストと子ども向け可読性で調整）---- */
+  --teal:        #30BCA7;   /* 主役アクセント・tint境界 */
+  --teal-hover:  #089781;
+  --teal-deep:   #0F8472;   /* 塗りボタン・白文字が乗る濃さ */
+  --teal-deepest:#0A5F52;   /* バッジ・押下 */
+  --teal-soft:   #64D8C6;
+  --teal-200:    #BCECD3;
+  --teal-100:    #E2F6F3;   /* 面（案内カード等） */
+  --teal-50:     #F0FBF9;   /* ごく淡い面 */
+
+  --amber:       #F6C445;   /* お祝い・ハイライト */
+  --amber-soft:  #FCEBB6;
+  --amber-ink:   #5A4500;
+  --coralc:      #F2795F;   /* 先生系の差し色 */
+  --danger:      #E63946;
+
+  --ink:   #1F2937;         /* 本文 */
+  --muted: #5B6670;
+  --faint: #8A939C;
+  --paper: #FFFFFF;
+  --canvas:#F7FAF9;         /* ページ地＝ごく淡いミント白 */
+  --line:  #E7ECEA;         /* やわらかい境界 */
+
+  /* ---- 角丸 ---- */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-pill: 999px;
+
+  /* ---- 影（やわらかいブラーのみ。硬いオフセット影は使わない）---- */
+  --shadow-card: 0 8px 24px rgba(16, 55, 49, .08);
+  --shadow-elev: 0 12px 32px rgba(16, 55, 49, .12);
+
+  /* ---- 組版リズム（やさしさの主因）---- */
+  --lh-body: 1.8;
+  --track: 0.04em;
+
+  /* ---- 既存の変数名を新パレットへ再マッピング（全画面に波及）---- */
+  --green:      var(--teal-deep);
+  --green-dark: var(--teal-deepest);
+  --soft-green: var(--teal-100);
+  --sand:       var(--canvas);
+  --lime:       var(--amber);
+  --coral:      var(--coralc);
+  --blue:       var(--teal-100);
+}
+
+/* ─── Base：ゆったりした組版 ─────────────────────────────── */
+body { background: var(--canvas); line-height: var(--lh-body); letter-spacing: var(--track); }
+
+/* ─── ヘッダー：黒2px罫線 → 1px soft ───────────────────── */
+.topbar { border-bottom: 1px solid var(--line); }
+.brand-mark { background: var(--teal); color: #08403790; color: #084037; }
+.header-steps li { border: 1px solid var(--teal-200); border-radius: var(--r-sm); color: var(--teal-deep); }
+.header-steps li.active { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
+.student-identity strong { border-left: 1px solid var(--line); }
+
+/* ─── 案内カード・見出し ───────────────────────────────── */
+.intro-card { background: var(--teal-100); border: 1px solid var(--teal-200); border-left: 5px solid var(--teal); border-radius: var(--r-md); }
+.spark { color: var(--teal-deep); }
+.eyebrow.coral { color: var(--coralc); }
+
+/* ─── 設問・入力：やわらかい枠＋ティールのfocus ───────── */
+.question { border-top-color: var(--line); }
+.question legend span { background: var(--teal-deep); border-radius: var(--r-sm); }
+.question em { background: #ffe9e2; color: #b5482f; }
+.question textarea, .short-answer { border: 1px solid #cfdad7; border-radius: var(--r-md); }
+.question textarea:focus, .short-answer:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(48, 188, 167, .22); }
+
+/* ─── ボタン：塗りティール＋やわらかい浮き ───────────── */
+.primary { background: var(--teal-deep); border: 1px solid var(--teal-deep); border-radius: var(--r-md); box-shadow: none; }
+.primary:hover { background: var(--teal-hover); transform: translateY(-1px); box-shadow: var(--shadow-card); }
+.secondary { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); }
+.secondary:hover { border-color: var(--teal-200); background: var(--teal-50); }
+
+/* ─── ダイアログ・引用 ─────────────────────────────────── */
+dialog { border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-elev); }
+blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber); border-radius: var(--r-sm); }
+.celebrate { color: var(--teal-deep); }
+
+/* ─── 先生ページ ───────────────────────────────────────── */
+.teacher-comment-trigger { border: 1px solid var(--teal); color: var(--teal-deep); border-radius: var(--r-md); }
+.teacher-comment-trigger:hover { background: var(--teal-50); }
+.teacher-answer h3 span { background: var(--teal-deep); }
+.teacher-answer p { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--teal-50); }
+.teacher-existing-comment h3 span { background: var(--coralc) !important; }
+.teacher-existing-comment p { background: #fff4ef; border-color: #f3c3b5; }
+.teacher-controls select, .teacher-key, .number-picker { border: 1px solid var(--line); border-radius: var(--r-sm); }
+.number-picker button { background: var(--teal-50); color: var(--teal-deep); }
+.empty-record { border: 1px dashed var(--teal-200); border-radius: var(--r-md); background: var(--teal-50); }
+
+/* ─── 状態表示 ─────────────────────────────────────────── */
+.load-status { background: var(--teal-100); border: 1px solid var(--teal-200); border-radius: var(--r-md); color: var(--teal-deep); }
+.comment-status { color: var(--teal-deep); }
+
+/* ─── ログイン ─────────────────────────────────────────── */
+.login-card { border: 1px solid var(--line); border-top: 5px solid var(--teal); border-radius: var(--r-lg); box-shadow: var(--shadow-card); }
+.login-fields input { border-radius: var(--r-md); }
+.login-fields input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(48, 188, 167, .22); }
+.login-submit { border-radius: var(--r-md); }
+.teacher-login { background: var(--amber); border: 1px solid var(--amber); border-radius: var(--r-md); color: var(--amber-ink); }
+.teacher-login span { color: var(--amber-ink); }
