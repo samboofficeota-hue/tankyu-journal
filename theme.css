@@ -133,3 +133,21 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .teacher-login{margin-top:30px;background:var(--teal-100);border:1px solid var(--teal-200);color:var(--teal-deep)}
 .teacher-login:hover{background:var(--teal-50);border-color:var(--teal)}
 .teacher-login span{color:var(--teal-deep)}
+
+/* ─── 生徒ページ：A〜Dタブ／番号バッジ をガイドラインに沿って（2026-09-01）─── */
+/* A〜D タブ：やさしいステップ（淡ミント→アクティブは塗り＋やわらか影） */
+.header-steps{gap:8px}
+.header-steps li{min-width:40px;height:32px;padding:0;border:0;border-radius:var(--r-pill);
+  background:var(--teal-50);color:var(--teal-deep);font-weight:700;transition:background .15s,box-shadow .15s}
+.header-steps li a{display:grid;place-items:center;width:100%;height:100%;border-radius:inherit;color:inherit;text-decoration:none}
+.header-steps li:hover{background:var(--teal-100)}
+.header-steps li.active{background:var(--teal-deep);box-shadow:0 2px 8px rgba(15,132,114,.28)}
+.header-steps li.active,.header-steps li.active a{color:#fff}
+
+/* 01〜09 番号バッジ：丸みのある柔らかいピル（白文字×ティール） */
+.question legend span{
+  display:inline-grid;place-items:center;vertical-align:middle;
+  min-width:28px;height:23px;padding:0 8px;margin-right:2px;
+  background:var(--teal-deep);color:#fff;border-radius:var(--r-pill);
+  font-size:11px;font-weight:800;letter-spacing:.02em;
+}
