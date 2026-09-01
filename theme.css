@@ -221,3 +221,11 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
   .form-section{border-top:1px solid #d5dbd9!important;padding-top:2mm!important}
   .journal-page form>.form-section:first-child{border-top:0!important;padding-top:0!important}
 }
+
+/* ─── 2カラムを整える（2026-09-01）───────────────────────
+   各STEPの余り問・短い回答欄(領域/場所)は全幅にして行を埋める。
+   2問並ぶ行は、セルを引き伸ばしテキストエリアを高さいっぱいに＝ボトムを揃える。 */
+.question.q-full{grid-column:1/-1}
+.journal-page form{align-items:stretch}
+.journal-page form .question{display:flex;flex-direction:column;min-width:0}
+.journal-page form .question>textarea{flex:1 1 auto}

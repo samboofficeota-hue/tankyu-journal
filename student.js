@@ -67,7 +67,8 @@
       const input = f.long
         ? `<textarea data-col="${f.col}" ${f.required ? 'required' : ''}>${val}</textarea>`
         : `<input class="short-answer" data-col="${f.col}" ${f.required ? 'required' : ''} value="${val}" />`;
-      html += `<fieldset class="question"><legend><span>${f.n}</span> ${esc(f.label)}${req}</legend>${help}${input}</fieldset>`;
+      const fullCls = f.full ? ' q-full' : '';
+      html += `<fieldset class="question${fullCls}"><legend><span>${f.n}</span> ${esc(f.label)}${req}</legend>${help}${input}</fieldset>`;
     });
 
     html += `<div class="actions">
