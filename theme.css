@@ -230,3 +230,24 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .journal-page form{align-items:stretch}
 .journal-page form .question{display:flex;flex-direction:column;min-width:0}
 .journal-page form .question>textarea{flex:1 1 auto}
+
+/* ─── みんなの今（ヘッダーボタン＋モーダル一覧）2026-09-01 ─── */
+.peers-btn{margin-left:6px;height:30px;padding:0 14px;white-space:nowrap;
+  border:1px solid var(--teal);border-radius:var(--r-pill);background:#fff;color:var(--teal-deep);
+  font:700 13px "Noto Sans JP",sans-serif;cursor:pointer;transition:background .15s}
+.peers-btn:hover{background:var(--teal-50)}
+#everyone-dialog{width:min(780px,calc(100vw - 40px));max-width:none;min-height:0;padding:32px}
+#everyone-dialog .eyebrow{color:var(--teal-deep)}
+.everyone-sub{margin:2px 0 0;color:var(--muted);font-size:13px}
+.peers-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;max-height:62vh;overflow:auto;padding-right:4px}
+.peers-note{grid-column:1/-1;margin:16px 0;color:var(--muted);text-align:center}
+.peer-card{border:1px solid var(--line);border-radius:var(--r-md);background:var(--teal-50);padding:12px 14px}
+.peer-card.is-me{background:#fff;border-color:var(--teal);box-shadow:0 0 0 2px rgba(48,188,167,.18)}
+.peer-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.peer-no{display:inline-grid;place-items:center;min-width:26px;height:22px;border-radius:var(--r-pill);
+  background:var(--teal-deep);color:#fff;font-size:11px;font-weight:800}
+.peer-head b{font-size:14px;color:var(--ink)}
+.peer-theme{margin:0;font-size:13px;line-height:1.6;font-weight:700;color:var(--ink)}
+.peer-sub{margin:4px 0 0;font-size:12px;line-height:1.5;color:var(--muted);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:560px){.peers-grid{grid-template-columns:1fr}}

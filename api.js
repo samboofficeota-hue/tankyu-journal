@@ -58,5 +58,18 @@
     return post({ action: 'saveComment', grade: o.grade, cls: o.cls, no: o.no, sessionId: o.sessionId, comment: o.comment });
   }
 
-  window.JournalAPI = { isLive: isLive, readStudent: readStudent, saveAnswers: saveAnswers, saveComment: saveComment };
+  // クラス全員（同学年・同クラス・指定セッション）の一覧
+  function listClass(o) {
+    if (DEMO) {
+      var d = DEMO_DATA.sessions[o.session] || {};
+      var row = { grade: '9', cls: 'A', no: '47', name: DEMO_DATA.student.name };
+      Object.keys(d).forEach(function (k) { row['col' + k] = d[k]; });
+      return Promise.resolve({ ok: true, rows: [row] });
+    }
+    var url = BASE + '/list?grade=' + encodeURIComponent(o.grade) +
+      '&cls=' + encodeURIComponent(o.cls) + '&session=' + encodeURIComponent(o.session);
+    return fetch(url, { method: 'GET', headers: { 'accept': 'application/json' } }).then(function (r) { return r.json(); });
+  }
+
+  window.JournalAPI = { isLive: isLive, readStudent: readStudent, saveAnswers: saveAnswers, saveComment: saveComment, listClass: listClass };
 })();

@@ -16,6 +16,7 @@
       <header class="topbar">
         <a class="brand" href="./login.html" aria-label="My 探究ジャーナル ホーム"><span class="brand-mark">✦</span> My 探究ジャーナル</a>
         <ol class="header-steps" id="session-steps" aria-label="探究の回"></ol>
+        <button type="button" class="peers-btn" id="peers-btn">👥 みんなの今</button>
         <div class="student-identity" id="student-identity"></div>
       </header>
 
@@ -56,6 +57,13 @@
       <p class="eyebrow coral">TEACHER'S COMMENT</p>
       <h2>先生からのコメント</h2>
       <p id="teacher-feedback-text"></p>
+    </dialog>
+    <dialog id="everyone-dialog">
+      <button class="close" aria-label="閉じる">×</button>
+      <p class="eyebrow">CLASS NOW</p>
+      <h2 id="everyone-title">みんなの今</h2>
+      <p class="everyone-sub" id="everyone-sub"></p>
+      <div class="peers-grid" id="peers-grid"></div>
     </dialog>
     <dialog id="submit-dialog">
       <div class="celebrate">✦</div>

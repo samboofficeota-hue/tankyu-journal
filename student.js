@@ -140,6 +140,32 @@
 
   document.querySelectorAll('.close, .close-dialog').forEach((b) => b.addEventListener('click', () => b.closest('dialog').close()));
 
+  // みんなの今：同じクラス・いま見ている回(A〜D)の全員をコンパクトに一覧
+  $('#peers-btn').addEventListener('click', () => {
+    const meta = schema.sessions[current];
+    const dlg = $('#everyone-dialog');
+    $('#everyone-title').textContent = `みんなの今（${current}）`;
+    $('#everyone-sub').textContent = `${student.grade}年 ${student.cls}組 ・ SESSION ${current}`;
+    const grid = $('#peers-grid');
+    grid.innerHTML = '<p class="peers-note">読み込み中…</p>';
+    dlg.showModal();
+    const prim = meta.type === 1 ? 13 : 5;   // テーマ列
+    const sec = meta.type === 1 ? 5 : 7;      // 副見出し（つぶやき / 目標）
+    API.listClass({ grade: student.grade, cls: student.cls, session: current }).then((res) => {
+      if (!res || !res.ok) { grid.innerHTML = '<p class="peers-note">読み込みに失敗しました。</p>'; return; }
+      const rows = (res.rows || []).filter((r) => [5, 6, 7, 8, 9, 10, 11, 12, 13].some((c) => (r['col' + c] || '') !== ''));
+      $('#everyone-sub').textContent = `${student.grade}年 ${student.cls}組 ・ SESSION ${current} ・ ${rows.length}人`;
+      if (!rows.length) { grid.innerHTML = '<p class="peers-note">この回の記録はまだありません。</p>'; return; }
+      grid.innerHTML = rows.map((r) => {
+        const name = r.name || '（お名前）';
+        const theme = r['col' + prim] || '（テーマ未記入）';
+        const sub = r['col' + sec] || '';
+        const me = String(r.no) === String(student.no) ? ' is-me' : '';
+        return `<article class="peer-card${me}"><div class="peer-head"><span class="peer-no">${esc(r.no)}</span><b>${esc(name)}</b></div><p class="peer-theme">${esc(theme)}</p>${sub ? `<p class="peer-sub">${esc(sub)}</p>` : ''}</article>`;
+      }).join('');
+    }).catch((e) => { grid.innerHTML = '<p class="peers-note">通信エラー：' + e + '</p>'; });
+  });
+
   // 印刷（A4タテ）時：テキストエリアを中身の高さまで伸ばして、回答が切れないようにする
   function fitTextareasForPrint() {
     form.querySelectorAll('textarea').forEach((t) => { t.dataset._h = t.style.height; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; });
