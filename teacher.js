@@ -9,12 +9,18 @@
   let current = 'A';        // 表示中の回
   const commentDialog = $('#teacher-comment-dialog');
 
+  let curGrade = '1', curCls = 'A';
   function key() {
-    return {
-      grade: $('#grade-input').value.trim(),
-      cls: $('#class-input').value.trim().toUpperCase(),
-      no: $('#number-input').value.trim()
-    };
+    return { grade: curGrade, cls: curCls, no: $('#number-input').value.trim() };
+  }
+  // 学年/組のセグメントボタン（D組は1年のみ）
+  function paintPicker() {
+    document.querySelectorAll('#grade-seg button').forEach((b) => b.classList.toggle('active', b.dataset.grade === curGrade));
+    document.querySelectorAll('#class-seg button').forEach((b) => {
+      const isD = b.dataset.cls === 'D';
+      b.hidden = isD && curGrade !== '1';
+      b.classList.toggle('active', b.dataset.cls === curCls);
+    });
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
   function sessionData(sid) { return data ? (data.sessions.find((s) => s.id === sid) || null) : null; }
@@ -80,8 +86,15 @@
     load();
   }
 
-  // セレクタ変更で読み込み
-  ['#grade-input', '#class-input'].forEach((s) => $(s).addEventListener('change', load));
+  // 学年/組ボタンで読み込み
+  document.querySelectorAll('#grade-seg button').forEach((b) => b.addEventListener('click', () => {
+    curGrade = b.dataset.grade;
+    if (curCls === 'D' && curGrade !== '1') curCls = 'A';  // D組は1年のみ→他学年ならAへ
+    paintPicker(); load();
+  }));
+  document.querySelectorAll('#class-seg button').forEach((b) => b.addEventListener('click', () => {
+    curCls = b.dataset.cls; paintPicker(); load();
+  }));
   $('#number-input').addEventListener('change', load);
   $('#number-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') load(); });
 
@@ -127,5 +140,6 @@
 
   // 初期表示
   paintTabs();
+  paintPicker();
   load();
 })();
