@@ -9,7 +9,7 @@
  */
 window.JOURNAL_CONFIG = {
   // Apps Script ウェブアプリの /exec URL
-  API_URL: 'https://script.google.com/macros/s/AKfycbwIebgaDmmdbehtNJjXcMf5zzZdb9vdIRuBk7OdEUX9AVK1mlfV1T9f7uZangU-q8rz/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzS15K871L3MT_F6HZ3Jvei34xtgfeAN25DGaKR1y8Kuf4LiTERAaxrcrRY6PbE0OdQ/exec',
   // Apps Script のスクリプトプロパティ WRITE_TOKEN と同じ文字列
   WRITE_TOKEN: 'tankyu'
 };
