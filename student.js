@@ -139,6 +139,16 @@
 
   document.querySelectorAll('.close, .close-dialog').forEach((b) => b.addEventListener('click', () => b.closest('dialog').close()));
 
+  // 印刷（A4タテ）時：テキストエリアを中身の高さまで伸ばして、回答が切れないようにする
+  function fitTextareasForPrint() {
+    form.querySelectorAll('textarea').forEach((t) => { t.dataset._h = t.style.height; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; });
+  }
+  function restoreTextareas() {
+    form.querySelectorAll('textarea').forEach((t) => { t.style.height = t.dataset._h || ''; });
+  }
+  window.addEventListener('beforeprint', fitTextareasForPrint);
+  window.addEventListener('afterprint', restoreTextareas);
+
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
   // --- 初期ロード ---

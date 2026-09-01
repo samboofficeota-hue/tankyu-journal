@@ -31,3 +31,41 @@ body{font-size:var(--type-body);line-height:1.6}.lesson-header h2{font-size:var(
 .teacher-existing-comment p{background:#fff0e9;border-color:#f0b7a6}
 .teacher-key{height:30px;min-width:44px;border:1px solid #bfcac0;border-radius:4px;background:#fff;color:var(--ink);font:700 13px "Noto Sans JP",sans-serif;text-align:center;padding:0 6px}
 .number-picker .number-input{width:42px;height:100%;border:0;text-align:center;font:700 13px "Noto Sans JP",sans-serif;background:#fff;color:var(--ink);outline:none}
+
+/* ===== A4タテ 印刷（新レイアウト・生徒/先生 共通） 2026-09-01 ===== */
+@media print{
+  @page{size:A4 portrait;margin:12mm}
+  html,body{background:#fff!important}
+  .app-shell{max-width:none!important;width:100%!important;box-shadow:none!important;margin:0}
+  /* ヘッダーは「誰の・どの回か」だけ残して圧縮 */
+  .topbar,.teacher-topbar{height:auto!important;min-height:0!important;padding:0 0 4mm!important;margin:0 0 5mm!important;border-bottom:1.5px solid var(--ink)!important;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .brand{font-size:12pt!important}
+  #session-steps,.header-steps,.teacher-controls,.student-float-nav{display:none!important}
+  .student-identity{margin-left:auto!important;font-size:11pt!important;gap:10px!important}
+  .student-identity strong{border-left:1px solid #999;padding-left:8px}
+  /* 画面専用UI・案内は印刷しない */
+  .actions,#load-status,.intro-card,.teacher-comment-trigger,#open-comment,dialog,.empty-record{display:none!important}
+  /* セッション見出し */
+  .lesson-header{margin:0 0 5mm!important}
+  .lesson-header h2{font-size:16pt!important;line-height:1.35!important}
+  .eyebrow{font-size:9pt!important}
+  .journal-page{max-width:none!important;padding:0!important}
+  /* A4タテは1カラム（横並びは窮屈なので縦積み） */
+  .journal-page form,.teacher-record{display:block!important}
+  .form-section{margin:5mm 0 1mm!important;padding:0 0 0 3mm!important;border-left:3px solid var(--green)!important;background:transparent!important;break-after:avoid;page-break-after:avoid}
+  .section-label{font-size:11pt!important}
+  .section-note,.help{font-size:8.5pt!important;color:#555!important}
+  /* 設問＋回答は途中で改ページしない */
+  .question,.teacher-answer{break-inside:avoid;page-break-inside:avoid;padding:2.5mm 0!important;border-top:1px solid #ccc!important;margin:0!important}
+  .question legend,.teacher-answer h3{font-size:11pt!important;margin:0 0 1.5mm!important;font-weight:700}
+  .question legend span,.teacher-answer h3 span{background:#333!important;color:#fff!important;padding:1px 5px!important;font-size:8pt!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .question em{display:none!important}   /* 「必須」バッジは紙では不要 */
+  /* 回答欄：中身を全部見せる（切らない） */
+  .question textarea,.short-answer,.teacher-answer p{
+    width:100%!important;box-sizing:border-box;border:1px solid #bbb!important;border-radius:3px!important;
+    padding:2mm!important;font-size:10.5pt!important;line-height:1.6!important;background:#fff!important;color:#000!important;
+    min-height:0!important;overflow:visible!important;resize:none!important;white-space:pre-wrap;word-break:break-word
+  }
+  .teacher-answer .unfilled{color:#999!important}
+  .teacher-existing-comment p{background:#fff!important;border-color:#e0b4a0!important}
+}
