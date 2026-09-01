@@ -119,15 +119,17 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .login-fields input{height:52px}
 .login-fields input::placeholder{color:#cdd6d3}   /* サンプルは薄く */
 
-/* ボタン：小さく・中央寄せ・2つ同じサイズに統一 */
+/* ボタン：小さく・センター揃え・2つ同じサイズに統一 */
+#student-login{text-align:center}
 .login-submit,.teacher-login{
   width:230px;max-width:100%;align-self:center;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  display:flex;margin-left:auto;margin-right:auto;
+  align-items:center;justify-content:center;gap:8px;
   height:46px;min-height:46px;padding:0 22px;border-radius:var(--r-md);
   font-size:14px;font-weight:700;
 }
-.login-submit{margin:4px auto 0}
-/* 先生導線は控えめ（同サイズ・アウトライン） */
-.teacher-login{margin:14px auto 0;background:#fff;border:1px solid var(--line);color:var(--muted)}
-.teacher-login:hover{border-color:var(--teal-200);background:var(--teal-50)}
-.teacher-login span{color:var(--muted)}
+.login-submit{margin-top:4px}
+/* 先生導線：少し下げて、薄いミント色を入れる（控えめ・同サイズ） */
+.teacher-login{margin-top:30px;background:var(--teal-100);border:1px solid var(--teal-200);color:var(--teal-deep)}
+.teacher-login:hover{background:var(--teal-50);border-color:var(--teal)}
+.teacher-login span{color:var(--teal-deep)}
