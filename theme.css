@@ -88,7 +88,10 @@ body { background: var(--canvas); line-height: var(--lh-body); letter-spacing: v
 .secondary:hover { border-color: var(--teal-200); background: var(--teal-50); }
 
 /* ─── ダイアログ・引用 ─────────────────────────────────── */
-dialog { border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-elev); }
+/* モーダルの縁はティール（ティールの存在感をここで出す） */
+dialog { border: 2px solid var(--teal); border-radius: var(--r-lg); box-shadow: var(--shadow-elev); }
+dialog .close{ color:var(--teal-deep); border-radius:var(--r-pill); transition:background .15s }
+dialog .close:hover{ background:var(--teal-50) }
 blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber); border-radius: var(--r-sm); }
 .celebrate { color: var(--teal-deep); }
 
