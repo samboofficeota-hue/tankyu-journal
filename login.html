@@ -14,12 +14,25 @@
       <section class="login-card" aria-labelledby="login-title">
         <p class="eyebrow">STUDENT LOGIN</p>
         <h1 id="login-title">自分のジャーナルをひらく</h1>
-        <p class="login-lead">学年・組・番号を入力してください。</p>
+        <p class="login-lead">学年・組を選び、番号を入れてください。</p>
         <form id="student-login">
           <div class="login-fields">
-            <label>学年<input id="grade" inputmode="numeric" maxlength="1" placeholder="9" required /><span>年</span></label>
-            <label>組<input id="class" maxlength="1" placeholder="A" required /><span>組</span></label>
-            <label>番号<input id="number" inputmode="numeric" maxlength="2" placeholder="47" required /><span>番</span></label>
+            <label>学年
+              <select id="grade" required>
+                <option value="" disabled selected>―</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+            <label>組
+              <select id="class" required disabled>
+                <option value="" disabled selected>―</option>
+              </select>
+            </label>
+            <label>番号
+              <input id="number" inputmode="numeric" maxlength="2" placeholder="12" required />
+            </label>
           </div>
           <p class="login-message" id="login-message" aria-live="polite"></p>
           <button class="primary login-submit" type="submit">ジャーナルをひらく</button>

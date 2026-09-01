@@ -105,3 +105,29 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .login-submit { border-radius: var(--r-md); }
 .teacher-login { background: var(--amber); border: 1px solid var(--amber); border-radius: var(--r-md); color: var(--amber-ink); }
 .teacher-login span { color: var(--amber-ink); }
+
+/* ─── ログイン画面の調整（2026-09-01）─────────────────────
+   学年/組=セレクト、番号=入力。ボタンは小さく2つ統一。 */
+.login-fields select{
+  grid-column:1/-1;width:100%;height:52px;box-sizing:border-box;
+  border:1px solid #cfdad7;border-radius:var(--r-md);background:#fff;color:var(--ink);
+  padding:0 10px;text-align:center;text-align-last:center;
+  font:700 20px "Noto Sans JP",sans-serif;cursor:pointer;
+}
+.login-fields select:disabled{color:var(--faint);background:#f5f8f7;cursor:not-allowed}
+.login-fields select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(48,188,167,.22);outline:none}
+.login-fields input{height:52px}
+.login-fields input::placeholder{color:#cdd6d3}   /* サンプルは薄く */
+
+/* ボタン：小さく・中央寄せ・2つ同じサイズに統一 */
+.login-submit,.teacher-login{
+  width:230px;max-width:100%;align-self:center;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:46px;min-height:46px;padding:0 22px;border-radius:var(--r-md);
+  font-size:14px;font-weight:700;
+}
+.login-submit{margin:4px auto 0}
+/* 先生導線は控えめ（同サイズ・アウトライン） */
+.teacher-login{margin:14px auto 0;background:#fff;border:1px solid var(--line);color:var(--muted)}
+.teacher-login:hover{border-color:var(--teal-200);background:var(--teal-50)}
+.teacher-login span{color:var(--muted)}
