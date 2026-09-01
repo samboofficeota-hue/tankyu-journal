@@ -1,0 +1,8 @@
+# Cloudflare Pages: 開発中はCSS/JSを毎回再検証させ、変更が即反映されるようにする
+# （キャッシュで「変化が見えない」を防ぐ。運用が固まったら max-age に戻してよい）
+/*.css
+  Cache-Control: no-cache
+/*.js
+  Cache-Control: no-cache
+/*.html
+  Cache-Control: no-cache
