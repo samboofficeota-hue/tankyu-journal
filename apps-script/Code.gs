@@ -28,10 +28,10 @@
 // type は列レイアウトの種類（1=My探究①型[A/B] / 3=My探究③型[C/D]）。
 // 読み書きは列番号で行うため type は将来の拡張用メモ。両型とも A〜N の14列。
 var SESSION_MAP = {
-  'A': { sheet: 'A', type: 1 },
-  'B': { sheet: 'B', type: 1 },
-  'C': { sheet: 'C', type: 3 },
-  'D': { sheet: 'D', type: 3 }
+  'A': { sheet: '0626', type: 1 },
+  'B': { sheet: '0629', type: 1 },
+  'C': { sheet: '0703', type: 3 },
+  'D': { sheet: '0714', type: 3 }
 };
 
 var DATA_START_ROW = 4;   // 1〜3行目はヘッダー、4行目からデータ
