@@ -308,7 +308,7 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 
 /* 左右ナビ：枠なし・白・薄いブルーの矢印・サイズ2倍 */
 .teacher-page .student-float-nav{
-  width:92px;height:104px;border:0;background:#fff;border-radius:var(--r-lg);
+  width:77px;height:104px;border:0;background:#fff;border-radius:var(--r-lg);
   color:#8fc9ea;font-size:52px;line-height:1;box-shadow:0 6px 20px rgba(16,55,49,.12);backdrop-filter:none}
 .teacher-page .student-float-nav:hover{color:#6fb7e0;background:#fff}
 .teacher-page .student-float-nav--previous{left:10px}
