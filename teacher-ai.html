@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIに相談 | My 探究ジャーナル</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="teacher-page ai-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./teacher.html"><span class="brand-mark">✦</span> My 探究ジャーナル</a>
+        <span class="topbar-role">AIに相談</span>
+        <a class="menu-back-btn" href="./teacher.html">☰ メニュー</a>
+      </header>
+
+      <main class="ai-main">
+        <div class="ai-chat" id="ai-chat">
+          <div class="ai-msg ai-msg--bot">
+            <div class="ai-avatar">✦</div>
+            <div class="ai-bubble">探究学習のこと、なんでも相談してください。<br />
+              例：「この問いをもっと深めるには？」「絵が好きな生徒への声かけは？」「この探究へのコメント案を3つ」</div>
+          </div>
+        </div>
+        <form class="ai-form" id="ai-form">
+          <textarea id="ai-input" rows="1" placeholder="メッセージを入力（Enterで送信 / Shift+Enterで改行）"></textarea>
+          <button type="submit" class="primary ai-send" id="ai-send">送信</button>
+        </form>
+        <p class="ai-note">AIの回答は下書きです。最終判断は先生が行ってください。（モデル: Claude Haiku 4.5）</p>
+      </main>
+    </div>
+
+    <script src="./teacher-ai.js"></script>
+  </body>
+</html>
