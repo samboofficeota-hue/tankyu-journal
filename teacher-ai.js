@@ -45,7 +45,13 @@
 
   function autoGrow() { input.style.height = 'auto'; input.style.height = Math.min(160, input.scrollHeight) + 'px'; }
   input.addEventListener('input', autoGrow);
-  input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
+  // Enterで送信。ただし日本語変換中（IME composition）の確定Enterでは送らない。
+  input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.shiftKey) return;
+    if (e.isComposing || e.keyCode === 229) return; // 変換確定のEnterは無視
+    e.preventDefault();
+    form.requestSubmit();
+  });
 
   // スコープ切替（学年/組）→ 会話をリセットして対象を変える
   document.querySelectorAll('#grade-seg button').forEach((b) => b.addEventListener('click', () => {
