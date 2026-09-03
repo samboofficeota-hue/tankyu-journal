@@ -2,6 +2,7 @@
 //   { action:'saveAnswers', grade,cls,no,name,sessionId, answers:{ "5":"...", ... } }
 //   { action:'saveComment', grade,cls,no,sessionId, comment:"..." }
 import { SESSIONS, ANSWER_COLS, norm, json } from './_shared.js';
+import { invalidateClassCache } from './_digest.js';
 
 async function ensureRow(env, grade, cls, no, session) {
   await env.DB.prepare(
@@ -26,6 +27,7 @@ export async function onRequestPost({ request, env }) {
       await env.DB.prepare(
         "UPDATE entries SET teacher_comment=?, updated_at=datetime('now') WHERE grade=? AND cls=? AND no=? AND session=?"
       ).bind(String(body.comment == null ? '' : body.comment), grade, cls, no, session).run();
+      await invalidateClassCache(env, grade, cls); // 分析ダイジェストを再生成させる
       return json({ ok: true, wrote: 'comment' });
     }
 
@@ -45,6 +47,7 @@ export async function onRequestPost({ request, env }) {
       const sql = `UPDATE entries SET ${sets.join(', ')} WHERE grade=? AND cls=? AND no=? AND session=?`;
       vals.push(grade, cls, no, session);
       await env.DB.prepare(sql).bind(...vals).run();
+      await invalidateClassCache(env, grade, cls); // 分析ダイジェストを再生成させる
       return json({ ok: true, wrote: Object.keys(answers) });
     }
 

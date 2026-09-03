@@ -1,44 +1,21 @@
-// POST /api/chat  → D1の探究記録だけを根拠に分析する先生向けAI（OpenAI / gpt-5.6-luna）
+// POST /api/chat  → D1の探究記録（事前生成ダイジェスト）だけを根拠に分析する先生向けAI（OpenAI / gpt-5.6-luna）
 // 外部情報は使わない。APIキーは env.OPENAI_API_KEY。
 import { json } from './_shared.js';
+import { getClassDigest } from './_digest.js';
 
 const MODEL = 'gpt-5.6-luna'; // UIでロック（既定）
 
-// 列→設問ラベル（A/B=My探究①型 / C/D=My探究③型）
-const T1 = { 5: '初めのつぶやき', 6: '問いの芽生え', 7: '一歩深まった問い', 8: '目的', 9: '目標(調査分析)', 10: '関係領域', 11: '期待する成果', 12: '他者から参考', 13: '探究テーマ' };
-const T3 = { 5: '今の探究テーマ', 7: '更新した目標', 8: '研究すること', 9: '方法', 10: '事前準備', 11: '関係領域', 12: '活動場所', 13: 'メモ' };
-
+// 選択された各クラスのダイジェスト（キャッシュ優先）を連結
 async function buildRecords(env, grade, clsList) {
   if (!env.DB || !grade || !clsList.length) return { text: '', count: 0 };
-  const ph = clsList.map(() => '?').join(',');
-  const { results } = await env.DB
-    .prepare(`SELECT * FROM entries WHERE grade=? AND cls IN (${ph}) ORDER BY cls, CAST(no AS INTEGER), session`)
-    .bind(String(grade), ...clsList).all();
-  if (!results || !results.length) return { text: '', count: 0 };
-
-  const multi = clsList.length > 1;
-  const byKey = {};
-  results.forEach((r) => {
-    const k = r.cls + '/' + r.no;
-    const s = byKey[k] || (byKey[k] = { cls: r.cls, no: r.no, name: r.name || '', sess: {} });
-    s.sess[r.session] = r;
-  });
-  const lines = [];
-  Object.values(byKey).forEach((s) => {
-    const who = (multi ? `${s.cls}組 ` : '') + `${s.no}番${s.name ? ' ' + s.name : ''}`;
-    const body = [];
-    ['A', 'B', 'C', 'D'].forEach((sid) => {
-      const r = s.sess[sid];
-      if (!r) return;
-      const L = (sid === 'A' || sid === 'B') ? T1 : T3;
-      const parts = [];
-      Object.keys(L).forEach((c) => { const v = r['col' + c]; if (v) parts.push(`${L[c]}:${v}`); });
-      if (r.teacher_comment) parts.push(`先生コメント:${r.teacher_comment}`);
-      if (parts.length) body.push(`  [${sid}回] ${parts.join(' / ')}`);
-    });
-    if (body.length) { lines.push('■ ' + who); lines.push(...body); }
-  });
-  return { text: lines.join('\n'), count: Object.keys(byKey).length };
+  const parts = [];
+  let count = 0;
+  for (const c of clsList) {
+    const d = await getClassDigest(env, grade, c);
+    if (d.text) parts.push(d.text);
+    count += d.count;
+  }
+  return { text: parts.join('\n'), count };
 }
 
 export async function onRequestPost({ request, env }) {
@@ -71,7 +48,7 @@ export async function onRequestPost({ request, env }) {
 
 【分析対象】${grade || '?'}年 ${clsList.length ? clsList.join('・') : '?'}組（${rec.count}名）
 
-【探究記録データ】
+【探究記録データ（要約）】※長い回答は末尾「…」で一部省略。番号・氏名・テーマは記録どおり。
 ${dataBlock}`;
 
     const model = (typeof body.model === 'string' && /^[a-zA-Z0-9][\w.:-]{1,60}$/.test(body.model)) ? body.model : MODEL;

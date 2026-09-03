@@ -26,3 +26,11 @@ CREATE TABLE entries (
 -- 一覧・生徒検索の索引
 CREATE INDEX IF NOT EXISTS idx_entries_class   ON entries (grade, cls, session, CAST(no AS INTEGER));
 CREATE INDEX IF NOT EXISTS idx_entries_student ON entries (grade, cls, no);
+
+-- AI分析の高速化：クラス別ダイジェストのキャッシュ（記録更新時に破棄→再生成）
+CREATE TABLE IF NOT EXISTS class_cache (
+  scope_key TEXT PRIMARY KEY,     -- "学年|組" 例: 1|A
+  digest    TEXT NOT NULL,        -- コンパクト要約
+  students  INTEGER DEFAULT 0,
+  built_at  TEXT DEFAULT (datetime('now'))
+);
