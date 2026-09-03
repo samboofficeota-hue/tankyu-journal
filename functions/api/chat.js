@@ -75,7 +75,8 @@ ${dataBlock}`;
     const resp = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: { 'authorization': 'Bearer ' + env.OPENAI_API_KEY, 'content-type': 'application/json' },
-      body: JSON.stringify({ model, messages, max_completion_tokens: 1024 })
+      // gpt-5.6系は推論トークンも max_completion_tokens に含むため大きめに確保（不足すると本文が空になる）
+      body: JSON.stringify({ model, messages, max_completion_tokens: 8000 })
     });
     const data = await resp.json().catch(() => ({}));
     if (!resp.ok) {
