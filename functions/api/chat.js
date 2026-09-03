@@ -27,17 +27,20 @@ export async function onRequestPost({ request, env }) {
 
     const messages = [{ role: 'system', content: body.system ? String(body.system) : SYSTEM }, ...history];
 
+    // モデルはフロントの選択を尊重（安全な文字だけ許可）。無ければ既定。
+    const model = (typeof body.model === 'string' && /^[a-zA-Z0-9][\w.:-]{1,60}$/.test(body.model)) ? body.model : MODEL;
+
     const resp = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'authorization': 'Bearer ' + env.OPENAI_API_KEY,
         'content-type': 'application/json'
       },
+      // max_completion_tokens は新旧モデル共通。temperature は推論系が弾くため送らない（既定=1）。
       body: JSON.stringify({
-        model: MODEL,
+        model,
         messages,
-        max_tokens: 1024,
-        temperature: 0.7
+        max_completion_tokens: 1024
       })
     });
     const data = await resp.json().catch(() => ({}));
@@ -45,7 +48,7 @@ export async function onRequestPost({ request, env }) {
       return json({ ok: false, error: (data && data.error && data.error.message) || ('OpenAI APIエラー ' + resp.status) }, 502);
     }
     const reply = ((data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '').trim();
-    return json({ ok: true, reply, model: MODEL });
+    return json({ ok: true, reply, model: (data.model || model) });
   } catch (err) {
     return json({ ok: false, error: String(err) }, 500);
   }
