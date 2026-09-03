@@ -22,6 +22,7 @@ export function digestForClass(rows, cls) {
   order.forEach((no) => {
     const s = byNo[no];
     const body = [];
+    const sigs = {}; // sid -> 署名（重複セッションを畳む）
     ['A', 'B', 'C', 'D'].forEach((sid) => {
       const r = s.sess[sid];
       if (!r) return;
@@ -29,7 +30,12 @@ export function digestForClass(rows, cls) {
       const parts = [];
       Object.keys(L).forEach((c) => { const v = r['col' + c]; if (v) parts.push(`${L[c]}:${trunc(v)}`); });
       if (r.teacher_comment) parts.push(`先生ｺﾒﾝﾄ:${trunc(r.teacher_comment)}`);
-      if (parts.length) body.push(`  [${sid}] ${parts.join(' / ')}`);
+      if (!parts.length) return;
+      const sig = parts.join('|');
+      let ref = null;
+      for (const psid of ['A', 'B', 'C', 'D']) { if (psid === sid) break; if (sigs[psid] === sig) { ref = psid; break; } }
+      if (ref) { body.push(`  [${sid}] （${ref}回と同じ）`); }
+      else { sigs[sid] = sig; body.push(`  [${sid}] ${parts.join(' / ')}`); }
     });
     if (body.length) { lines.push(`■ ${cls}組 ${s.no}番${s.name ? ' ' + s.name : ''}`); lines.push(...body); }
   });
