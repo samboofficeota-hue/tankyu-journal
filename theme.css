@@ -415,3 +415,9 @@ blockquote { background: var(--amber-soft); border-left: 5px solid var(--amber);
 .ai-page .menu-back-btn{margin-left:12px}
 .ai-model-tag{display:block;margin-top:8px;color:var(--faint);font-size:10px;letter-spacing:.02em}
 @media(max-width:640px){.ai-model-pick{width:100%;order:5;margin-left:0}.ai-model-pick select{flex:1;max-width:none}}
+
+/* AIを使って分析：スコープ＋ヒント */
+.ai-scope{margin-left:12px}
+.ai-model-pick select:disabled{opacity:1;background:var(--teal-50);color:var(--teal-deep);cursor:default;font-weight:700}
+.ai-hint{display:block;margin-top:6px;color:var(--faint);font-size:11px}
+@media(max-width:820px){.ai-scope{order:6;width:100%;margin-left:0}}

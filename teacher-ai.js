@@ -1,30 +1,24 @@
-/* AIに相談（先生向け）— /api/chat（Claude Haiku 4.5）と対話 */
+/* AIを使って分析（先生向け）— D1の探究記録だけを根拠に /api/chat（gpt-5.6-luna固定）で対話 */
 (function () {
   const chat = document.getElementById('ai-chat');
   const form = document.getElementById('ai-form');
   const input = document.getElementById('ai-input');
   const send = document.getElementById('ai-send');
-  const history = []; // {role:'user'|'assistant', content}
-  const modelSel = document.getElementById('ai-model');
+  const MODEL = 'gpt-5.6-luna'; // 固定（UIでロック）
+
+  let curGrade = '1', curCls = 'A';
+  let history = []; // {role, content}
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
-  // 使えるモデル一覧を読み込む（比較・選択用）
-  (async function loadModels() {
-    try {
-      const r = await fetch('/api/models');
-      const d = await r.json();
-      if (d && d.ok && d.models && d.models.length) {
-        const prefer = ['gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.5', 'gpt-5.1-chat-latest', 'gpt-5-chat-latest', 'gpt-4o-mini'];
-        const def = prefer.find((m) => d.models.includes(m)) || d.models[0];
-        modelSel.innerHTML = d.models.map((m) => `<option value="${esc(m)}"${m === def ? ' selected' : ''}>${esc(m)}</option>`).join('');
-      } else {
-        modelSel.innerHTML = '<option value="gpt-4o-mini">gpt-4o-mini</option>';
-      }
-    } catch (e) {
-      modelSel.innerHTML = '<option value="gpt-4o-mini">gpt-4o-mini</option>';
-    }
-  })();
+  function paintPicker() {
+    document.querySelectorAll('#grade-seg button').forEach((b) => b.classList.toggle('active', b.dataset.grade === curGrade));
+    document.querySelectorAll('#class-seg button').forEach((b) => {
+      const isD = b.dataset.cls === 'D';
+      b.hidden = isD && curGrade !== '1';           // D組は1年のみ
+      b.classList.toggle('active', b.dataset.cls === curCls);
+    });
+  }
 
   function addMsg(role, text, opts) {
     opts = opts || {};
@@ -39,9 +33,27 @@
     return wrap;
   }
 
+  function intro() {
+    chat.innerHTML = '';
+    history = [];
+    addMsg('bot', `<b>${curGrade}年${curCls}組</b>の探究記録を分析します。<br>` +
+      '例：「このクラスの探究の傾向は？」「似たテーマの生徒は？」「まだ問いが深まっていない子は？」「◯番の子への次の声かけは？」<br>' +
+      '<span class="ai-hint">※ 記録データだけを根拠にします（外部情報は使いません）</span>', { raw: true });
+  }
+
   function autoGrow() { input.style.height = 'auto'; input.style.height = Math.min(160, input.scrollHeight) + 'px'; }
   input.addEventListener('input', autoGrow);
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
+
+  // スコープ切替（学年/組）→ 会話をリセットして対象を変える
+  document.querySelectorAll('#grade-seg button').forEach((b) => b.addEventListener('click', () => {
+    curGrade = b.dataset.grade;
+    if (curCls === 'D' && curGrade !== '1') curCls = 'A';
+    paintPicker(); intro();
+  }));
+  document.querySelectorAll('#class-seg button').forEach((b) => b.addEventListener('click', () => {
+    curCls = b.dataset.cls; paintPicker(); intro();
+  }));
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -51,12 +63,12 @@
     history.push({ role: 'user', content: text });
     input.value = ''; autoGrow();
     send.disabled = true;
-    const thinking = addMsg('bot', '考えています…', { thinking: true });
+    const thinking = addMsg('bot', '記録を読んで考えています…', { thinking: true });
     try {
       const r = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ messages: history, model: modelSel.value || undefined })
+        body: JSON.stringify({ messages: history, grade: curGrade, cls: curCls, model: MODEL })
       });
       const data = await r.json();
       thinking.remove();
@@ -74,5 +86,7 @@
     input.focus();
   });
 
+  paintPicker();
+  intro();
   input.focus();
 })();
