@@ -15,7 +15,7 @@
       const r = await fetch('/api/models');
       const d = await r.json();
       if (d && d.ok && d.models && d.models.length) {
-        const prefer = ['gpt-4o-mini', 'gpt-4o', 'gpt-4.1-mini', 'gpt-4.1'];
+        const prefer = ['gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.5', 'gpt-5.1-chat-latest', 'gpt-5-chat-latest', 'gpt-4o-mini'];
         const def = prefer.find((m) => d.models.includes(m)) || d.models[0];
         modelSel.innerHTML = d.models.map((m) => `<option value="${esc(m)}"${m === def ? ' selected' : ''}>${esc(m)}</option>`).join('');
       } else {
