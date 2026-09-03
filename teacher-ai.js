@@ -6,7 +6,8 @@
   const send = document.getElementById('ai-send');
   const MODEL = 'gpt-5.6-luna'; // 固定（UIでロック）
 
-  let curGrade = '1', curCls = 'A';
+  let curGrade = '1';          // 学年は1つだけ
+  let curClasses = ['A'];      // クラスは複数選択
   let history = []; // {role, content}
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
@@ -16,9 +17,10 @@
     document.querySelectorAll('#class-seg button').forEach((b) => {
       const isD = b.dataset.cls === 'D';
       b.hidden = isD && curGrade !== '1';           // D組は1年のみ
-      b.classList.toggle('active', b.dataset.cls === curCls);
+      b.classList.toggle('active', curClasses.indexOf(b.dataset.cls) >= 0);
     });
   }
+  function classesLabel() { return curClasses.slice().sort().join('・'); }
 
   function addMsg(role, text, opts) {
     opts = opts || {};
@@ -36,9 +38,9 @@
   function intro() {
     chat.innerHTML = '';
     history = [];
-    addMsg('bot', `<b>${curGrade}年${curCls}組</b>の探究記録を分析します。<br>` +
-      '例：「このクラスの探究の傾向は？」「似たテーマの生徒は？」「まだ問いが深まっていない子は？」「◯番の子への次の声かけは？」<br>' +
-      '<span class="ai-hint">※ 記録データだけを根拠にします（外部情報は使いません）</span>', { raw: true });
+    addMsg('bot', `<b>${curGrade}年 ${classesLabel()}組</b>の探究記録を分析します。<br>` +
+      '例：「探究の傾向は？」「似たテーマの生徒は？」「まだ問いが深まっていない子は？」「クラスごとの違いは？」<br>' +
+      '<span class="ai-hint">※ 記録データだけを根拠にします（外部情報は使いません）。組は複数選べます</span>', { raw: true });
   }
 
   function autoGrow() { input.style.height = 'auto'; input.style.height = Math.min(160, input.scrollHeight) + 'px'; }
@@ -48,11 +50,16 @@
   // スコープ切替（学年/組）→ 会話をリセットして対象を変える
   document.querySelectorAll('#grade-seg button').forEach((b) => b.addEventListener('click', () => {
     curGrade = b.dataset.grade;
-    if (curCls === 'D' && curGrade !== '1') curCls = 'A';
+    if (curGrade !== '1') curClasses = curClasses.filter((c) => c !== 'D'); // D組は1年のみ
+    if (!curClasses.length) curClasses = ['A'];
     paintPicker(); intro();
   }));
   document.querySelectorAll('#class-seg button').forEach((b) => b.addEventListener('click', () => {
-    curCls = b.dataset.cls; paintPicker(); intro();
+    const c = b.dataset.cls;
+    const i = curClasses.indexOf(c);
+    if (i >= 0) { if (curClasses.length > 1) curClasses.splice(i, 1); } // 最低1つは残す
+    else { curClasses.push(c); }
+    paintPicker(); intro();
   }));
 
   form.addEventListener('submit', async (e) => {
@@ -68,7 +75,7 @@
       const r = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ messages: history, grade: curGrade, cls: curCls, model: MODEL })
+        body: JSON.stringify({ messages: history, grade: curGrade, classes: curClasses, model: MODEL })
       });
       const data = await r.json();
       thinking.remove();

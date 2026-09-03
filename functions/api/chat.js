@@ -8,21 +8,24 @@ const MODEL = 'gpt-5.6-luna'; // UIでロック（既定）
 const T1 = { 5: '初めのつぶやき', 6: '問いの芽生え', 7: '一歩深まった問い', 8: '目的', 9: '目標(調査分析)', 10: '関係領域', 11: '期待する成果', 12: '他者から参考', 13: '探究テーマ' };
 const T3 = { 5: '今の探究テーマ', 7: '更新した目標', 8: '研究すること', 9: '方法', 10: '事前準備', 11: '関係領域', 12: '活動場所', 13: 'メモ' };
 
-async function buildRecords(env, grade, cls) {
-  if (!env.DB || !grade || !cls) return { text: '', count: 0 };
+async function buildRecords(env, grade, clsList) {
+  if (!env.DB || !grade || !clsList.length) return { text: '', count: 0 };
+  const ph = clsList.map(() => '?').join(',');
   const { results } = await env.DB
-    .prepare('SELECT * FROM entries WHERE grade=? AND cls=? ORDER BY CAST(no AS INTEGER), session')
-    .bind(String(grade), String(cls).toUpperCase()).all();
+    .prepare(`SELECT * FROM entries WHERE grade=? AND cls IN (${ph}) ORDER BY cls, CAST(no AS INTEGER), session`)
+    .bind(String(grade), ...clsList).all();
   if (!results || !results.length) return { text: '', count: 0 };
 
-  const byNo = {};
+  const multi = clsList.length > 1;
+  const byKey = {};
   results.forEach((r) => {
-    const s = byNo[r.no] || (byNo[r.no] = { no: r.no, name: r.name || '', sess: {} });
+    const k = r.cls + '/' + r.no;
+    const s = byKey[k] || (byKey[k] = { cls: r.cls, no: r.no, name: r.name || '', sess: {} });
     s.sess[r.session] = r;
   });
   const lines = [];
-  Object.values(byNo).forEach((s) => {
-    const header = `■ ${s.no}番${s.name ? ' ' + s.name : ''}`;
+  Object.values(byKey).forEach((s) => {
+    const who = (multi ? `${s.cls}組 ` : '') + `${s.no}番${s.name ? ' ' + s.name : ''}`;
     const body = [];
     ['A', 'B', 'C', 'D'].forEach((sid) => {
       const r = s.sess[sid];
@@ -33,9 +36,9 @@ async function buildRecords(env, grade, cls) {
       if (r.teacher_comment) parts.push(`先生コメント:${r.teacher_comment}`);
       if (parts.length) body.push(`  [${sid}回] ${parts.join(' / ')}`);
     });
-    if (body.length) { lines.push(header); lines.push(...body); }
+    if (body.length) { lines.push('■ ' + who); lines.push(...body); }
   });
-  return { text: lines.join('\n'), count: Object.keys(byNo).length };
+  return { text: lines.join('\n'), count: Object.keys(byKey).length };
 }
 
 export async function onRequestPost({ request, env }) {
@@ -45,7 +48,9 @@ export async function onRequestPost({ request, env }) {
     }
     const body = await request.json().catch(() => ({}));
     const grade = body.grade ? String(body.grade) : '';
-    const cls = body.cls ? String(body.cls).toUpperCase() : '';
+    // クラスは複数可（classes 配列 or 単一 cls）
+    let clsList = Array.isArray(body.classes) ? body.classes : (body.cls ? [body.cls] : []);
+    clsList = Array.from(new Set(clsList.map((c) => String(c).toUpperCase()).filter((c) => /^[A-Z]$/.test(c))));
 
     const src = Array.isArray(body.messages) ? body.messages : [];
     const history = src.slice(-40)
@@ -53,7 +58,7 @@ export async function onRequestPost({ request, env }) {
       .filter((m) => m.content);
     if (!history.length) return json({ ok: false, error: 'messages が空です' }, 400);
 
-    const rec = await buildRecords(env, grade, cls);
+    const rec = await buildRecords(env, grade, clsList);
     const dataBlock = rec.text || '（対象クラスの記録が読み込めませんでした。学年・組を確認してください）';
 
     const system = `あなたは中学校「探究学習（My探究）」の記録データを分析して、先生を支える相談相手です。
@@ -64,7 +69,7 @@ export async function onRequestPost({ request, env }) {
 - 生徒個人を尊重し、良さと「次の一歩」を具体的に示します。日本語で簡潔に、要点は箇条書き。
 - 番号や名前を挙げるときは、必ずデータにある表記を使います。
 
-【分析対象】${grade || '?'}年${cls || '?'}組（${rec.count}名）
+【分析対象】${grade || '?'}年 ${clsList.length ? clsList.join('・') : '?'}組（${rec.count}名）
 
 【探究記録データ】
 ${dataBlock}`;
