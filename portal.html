@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>エスラボ ポータル</title>
+    <meta name="description" content="エスラボのツールの入り口。My 探究ジャーナルなど、使うものをここから選びます。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="portal-page">
+    <main class="portal-shell">
+      <header class="portal-head">
+        <div class="portal-brand"><span class="brand-mark">✦</span><span>エスラボ</span></div>
+        <p class="eyebrow">ESLAB PORTAL</p>
+        <h1 class="portal-title">エスラボ ポータル</h1>
+        <p class="portal-lead">エスラボのツールの入り口です。使うものを選んでください。</p>
+      </header>
+
+      <section class="portal-section" aria-labelledby="portal-now-title">
+        <h2 class="portal-section-title" id="portal-now-title">いま使えるもの</h2>
+        <div class="portal-grid">
+          <a class="portal-tile" href="./login.html">
+            <span class="portal-ico">📓</span>
+            <b class="portal-name">My 探究ジャーナル</b>
+            <span class="portal-desc">生徒用。学年・組・番号でひらいて、探究の記録を書く。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+          <a class="portal-tile" href="./teacher.html">
+            <span class="portal-ico">🧑‍🏫</span>
+            <b class="portal-name">My 探究ジャーナル（先生）</b>
+            <span class="portal-desc">先生用。授業の設計・ダッシュボード・コメント記入・AI分析。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="portal-section" aria-labelledby="portal-soon-title">
+        <h2 class="portal-section-title" id="portal-soon-title">準備中</h2>
+        <!-- ▼ 今後のツール枠。名前・説明・アイコンを書き換え、
+             公開するときは <div class="portal-tile is-soon"> を
+             <a class="portal-tile" href="./◯◯.html"> に変えて
+             .portal-badge を .portal-arrow（→）に差し替えてください。 -->
+        <div class="portal-grid">
+          <div class="portal-tile is-soon">
+            <span class="portal-ico">🧪</span>
+            <b class="portal-name">あたらしいツール</b>
+            <span class="portal-desc">ここに次のツールが入ります。</span>
+            <span class="portal-badge">準備中</span>
+          </div>
+          <div class="portal-tile is-soon">
+            <span class="portal-ico">🌱</span>
+            <b class="portal-name">あたらしいツール</b>
+            <span class="portal-desc">ここに次のツールが入ります。</span>
+            <span class="portal-badge">準備中</span>
+          </div>
+          <div class="portal-tile is-soon">
+            <span class="portal-ico">📚</span>
+            <b class="portal-name">あたらしいツール</b>
+            <span class="portal-desc">ここに次のツールが入ります。</span>
+            <span class="portal-badge">準備中</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="portal-foot">エスラボ</footer>
+    </main>
+  </body>
+</html>
