@@ -737,3 +737,40 @@ a.portal-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-elev);bor
   .vol-item-btn{margin-left:0}
   .adm-item-actions{margin-left:0}
 }
+
+/* ─── ナナメの部屋：入口とホーム（2026-09-05）──────────────────
+   ポータル → ログイン → 部屋のメニュー → 各画面。
+   タイルは先生メニューと同じ menu-* の語彙をそのまま使う（docs/design.md）。 */
+.naname-menu-page{background:var(--canvas)}
+.home-lead{margin:0 0 var(--v-lg);color:var(--muted);line-height:var(--lh-body)}
+
+.home-card{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:var(--v-md);
+  padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;
+  box-shadow:var(--shadow-card)}
+.home-card.is-now{border-color:var(--teal-200);background:var(--teal-50)}
+.home-card.is-todo{border-color:var(--amber);background:#FFFBEF}
+.home-card-body{flex:1;min-width:0}
+.home-card-label{display:inline-block;margin-bottom:5px;padding:3px 10px;border-radius:var(--r-pill);
+  background:var(--teal-deep);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em}
+.home-card.is-todo .home-card-label{background:var(--amber);color:var(--amber-ink)}
+.home-card-title{display:block;font-size:16px;line-height:1.6}
+.home-card-desc{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.75}
+.home-card-quote{margin:9px 0 0;padding:11px 15px;border-left:3px solid var(--teal-200);
+  border-radius:0 var(--r-sm) var(--r-sm) 0;background:#fff;font-size:14px;line-height:1.8}
+.home-card-btn{margin-left:auto;padding:11px 18px;border-radius:var(--r-md);text-decoration:none;
+  background:var(--teal-deep);color:#fff;font-size:13px;font-weight:700;white-space:nowrap}
+.home-card-btn:hover{background:var(--teal-deepest)}
+.home-card.is-todo .home-card-btn{background:var(--amber-ink)}
+
+/* まだ作っていない行き先は、押せないタイルとして置く（導線の存在は見せる） */
+.menu-tile.is-soon{opacity:.55;cursor:default}
+.menu-tile.is-soon:hover{transform:none;box-shadow:none;border-color:var(--line)}
+
+/* ログイン：メール1本のときの入力欄と、下の注意書き */
+.login-single{display:block;margin:var(--v-lg) 0 var(--v-sm);color:var(--muted);font-size:13px;font-weight:700}
+.login-single input{display:block;width:100%;height:52px;margin-top:6px;padding:8px 14px;
+  border:1px solid #bfcac0;border-radius:var(--r-md);background:#fff;color:var(--ink);
+  font:400 16px "Noto Sans JP",sans-serif}
+.login-single input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(48,188,167,.22);outline:none}
+.login-foot-note{margin-top:var(--v-xl);padding-top:var(--v-md);border-top:1px solid var(--line);
+  color:var(--faint);font-size:12px;line-height:1.8}

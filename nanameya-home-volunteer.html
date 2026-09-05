@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナナメの部屋（大人）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-menu-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./portal.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role" id="who"></span>
+      </header>
+
+      <main class="menu-main">
+        <p class="eyebrow">NANAME NO HEYA</p>
+        <h1 class="menu-title">あなたの部屋</h1>
+        <p class="home-lead">やることだけを上に出しています。準備に時間がかからないようにしています。</p>
+
+        <!-- あなたの番 / 次の対話 -->
+        <section id="home-cards"></section>
+
+        <section class="naname-section" aria-labelledby="home-menu-title">
+          <h2 class="naname-section-title" id="home-menu-title">できること</h2>
+          <div class="menu-grid" id="home-menu"></div>
+        </section>
+
+        <p class="naname-foot-note">
+          生徒の記録は、担当する対話の分だけ・終了の24時間後まで見られます。開いた記録は事務局に記録されます。
+          持ち出し・コピー・スクリーンショットはしないでください。
+        </p>
+      </main>
+
+      <a class="help-fab" href="#" id="help-fab">運営に連絡</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-home-volunteer.js"></script>
+  </body>
+</html>
