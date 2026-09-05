@@ -59,6 +59,10 @@
 
 ## 2. シナリオ
 
+> **シナリオ1（背骨）＝ 空き枠登録から議事録が事務局に返るまで**は、
+> [`docs/nanameya-flow.md`](nanameya-flow.md) に一本の流れとして展開した。
+> 以下はキャラ別の全体像。
+
 ### C1・C2 生徒（S1〜S6）
 
 - **S1 きっかけ**：ジャーナルの記録詳細に「この続きをナナメの大人と話す」導線が出る。準備は不要。
@@ -103,7 +107,8 @@
 | ナナメの部屋トップ（大人一覧） | `nanameya.html` | C1・C2 | S2・S3 | ✅ モック |
 | 大人の詳細 → 予約 | `nanameya-book.html` | C1・C2 | S3・S4 | 未 |
 | ジャーナルからの導線・対話ステータス | `student.html` に追記 | C1・C2 | S1・S6 | 未 |
-| 対話中／対話後 | `nanameya-session.html` | C1・C2 | S5・S6 | 未 |
+| 対話カード（日時→10分前にURL）／対話後 | `nanameya-session.html` | C1・C2 | S5・S6 | 未 |
+| 議事録の入力 | `nanameya-note.html` | C6 | V2 | 未 |
 | 先生用 ナナメの部屋 | `teacher-nanameya.html` | C3 | T1・T2 | 未 |
 | **ボランティア募集・応募** | `nanameya-join.html` | **C5** | V0-1・V0-2 | 未 |
 | **応募ステータス（審査・誓約・研修）** | `nanameya-status.html` | **C5** | V0-3〜V0-5 | 未 |
