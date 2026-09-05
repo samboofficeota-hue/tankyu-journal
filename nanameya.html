@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナナメの部屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./portal.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role">エスラボ</span>
+      </header>
+
+      <main class="naname-main">
+        <p class="eyebrow">NANAME NO HEYA</p>
+        <h1 class="naname-title">問いの続きを、話してみる。</h1>
+        <p class="naname-lead">
+          評価しない地域の大人と、1対1で15〜30分。<br />
+          あなたがジャーナルに書いた記録がそのまま話す材料になるので、準備はいりません。
+        </p>
+
+        <!-- S3: 保護者同意ゲート。同意が取れるまで予約導線を出さない -->
+        <section class="consent-gate" id="consent-gate" hidden>
+          <span class="consent-ico">🏠</span>
+          <div>
+            <b class="consent-name">まず、おうちの人の同意が必要です</b>
+            <p class="consent-desc">
+              はじめて話す前に、保護者の方の同意をもらってください。同意が確認できると、予約ボタンが出ます。
+            </p>
+            <a class="consent-btn" href="#" id="consent-start">おうちの人に見せる説明をひらく</a>
+          </div>
+        </section>
+
+        <!-- S2: 迫り方で選ぶ（「調べる」以外の入り口を先に見せる） -->
+        <section class="naname-section" aria-labelledby="filter-title">
+          <h2 class="naname-section-title" id="filter-title">どう迫ってみたい？</h2>
+          <p class="naname-section-note">大人は「職業」ではなく「迫り方」で選びます。ピンとこなければ「ぜんぶ」でOK。</p>
+          <div class="approach-row" id="approach-row" role="group" aria-label="迫り方でしぼる"></div>
+        </section>
+
+        <section class="naname-section" aria-labelledby="people-title">
+          <h2 class="naname-section-title" id="people-title">ナナメの大人</h2>
+          <div class="people-grid" id="people-grid"></div>
+          <p class="people-empty" id="people-empty" hidden>この迫り方の大人は、いまはお休み中です。</p>
+        </section>
+
+        <p class="naname-foot-note">
+          ここで話したことは成績には関係しません。連絡先の交換はできない決まりです。
+        </p>
+      </main>
+
+      <!-- S5: 通報導線は全画面に常設する -->
+      <a class="help-fab" href="#" id="help-fab">困ったときは</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya.js"></script>
+  </body>
+</html>

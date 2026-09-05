@@ -12,6 +12,7 @@ Apps Script + スプレッドシート版（旧）は読み取り5〜6秒と遅�
 ```
 
 - 入り口: `portal.html`（エスラボ ポータル。`/` はここへ転送。各ツールへのタイルを並べる）
+- ナナメの部屋: `nanameya.html`（評価しない地域の大人との1対1対話。設計は [`docs/nanameya.md`](docs/nanameya.md)）
 - 生徒フロー: `login.html`（学年/組/番号）→ `student.html`（A〜Dを1枚で切替・提出でD1へ保存）
 - 先生フロー: `teacher.html`（生徒を選んで読取り→先生コメントをD1へ保存）
 - データ: 現行スプレッドシート「原外中_探究シート_加工用」の4タブ（0626/0629/0703/0714＝セッションA/B/C/D）を **d1/seed.sql に取り込み済み**（683行・176名）。以後は D1 が正本。
@@ -87,6 +88,8 @@ Build output directory = `/`（ビルド不要）。デプロイ後、
 ```
 index.html          /（portal へ転送）
 portal.html         エスラボ ポータル（サイトの入り口・ツールのタイル一覧）
+nanameya(.html/.js) ナナメの部屋（大人一覧・同意ゲート・通報導線／いまはモック）
+nanameya-data.js    ナナメの部屋のキャラ設定（docs/nanameya.md が正本）
 login/student/teacher(.html/.js)  画面
 config.js           API_BASE / PORTAL_URL / DEMO
 schema.js           セッション定義と質問→列マッピング

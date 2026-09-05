@@ -457,3 +457,75 @@ a.portal-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-elev);bor
   color:var(--teal-deep);font-size:13px;font-weight:700;text-decoration:none;letter-spacing:var(--track)}
 .portal-back:hover{text-decoration:underline}
 .login-shell .portal-back{margin-bottom:var(--v-lg)}
+
+/* ─── ナナメの部屋（2026-09-05）─────────────────────────────
+   docs/nanameya.md のシナリオ S2（選ぶ）/ S3（同意ゲート）/ S5（通報導線）。
+   評価しない場所なので、ティールは使うが「採点」を思わせる強い色面は置かない。 */
+.naname-page{background:var(--canvas)}
+.naname-main{max-width:900px;margin:0 auto;padding:48px 24px 96px}
+.naname-main .eyebrow{color:var(--teal-deep)}
+.naname-title{margin:var(--v-xs) 0 var(--v-sm);font-size:28px;line-height:1.45}
+.naname-lead{margin:0;color:var(--muted);line-height:var(--lh-body)}
+.naname-section{margin-top:var(--v-xl)}
+.naname-section-title{margin:0 0 var(--v-xs);font-size:14px;font-weight:700;color:var(--muted);letter-spacing:.08em}
+.naname-section-note{margin:0 0 var(--v-md);color:var(--faint);font-size:12px;line-height:1.7}
+.naname-foot-note{margin-top:var(--v-xl);padding-top:var(--v-md);border-top:1px solid var(--line);
+  color:var(--faint);font-size:12px;line-height:1.8}
+
+/* S3: 保護者同意ゲート */
+.consent-gate[hidden]{display:none}
+.consent-gate{display:flex;gap:16px;align-items:flex-start;margin-top:var(--v-xl);padding:22px 22px 20px;
+  border:1px solid var(--amber);border-radius:var(--r-lg);background:#FFFBEF}
+.consent-ico{display:inline-grid;place-items:center;flex:0 0 auto;width:44px;height:44px;
+  border-radius:var(--r-md);background:#fff;font-size:22px}
+.consent-name{display:block;font-size:16px}
+.consent-desc{margin:var(--v-xs) 0 var(--v-sm);color:var(--muted);font-size:13px;line-height:1.8}
+.consent-btn{display:inline-block;padding:10px 16px;border-radius:var(--r-md);text-decoration:none;
+  background:#fff;border:1px solid var(--amber);color:var(--amber-ink);font-size:13px;font-weight:700}
+.consent-btn:hover{background:var(--amber-soft)}
+
+/* S2: 迫り方チップ */
+.approach-row{display:flex;flex-wrap:wrap;gap:8px}
+.approach-chip{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;cursor:pointer;
+  border:1px solid var(--line);border-radius:var(--r-pill);background:#fff;color:var(--ink);
+  font:700 13px "Noto Sans JP",sans-serif;transition:background .15s,border-color .15s,color .15s}
+.approach-chip:hover{border-color:var(--teal-200);background:var(--teal-50)}
+.approach-chip.selected{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+.approach-ico{font-size:14px}
+
+/* ナナメの大人カード */
+.people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.person-card{display:flex;flex-direction:column;padding:22px 20px 20px;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow-card)}
+.person-head{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.person-avatar{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;
+  background:var(--teal-100);font-size:26px}
+.person-name{display:block;font-size:17px;line-height:1.5}
+.person-title{color:var(--muted);font-size:12px}
+.person-approach{grid-column:1/-1;justify-self:start;margin-top:var(--v-xs);padding:4px 10px;
+  border-radius:var(--r-pill);background:var(--teal-50);border:1px solid var(--teal-200);
+  color:var(--teal-deepest);font-size:12px;font-weight:700}
+.person-voice{margin:var(--v-md) 0 0;font-size:14px;line-height:1.8;font-weight:700}
+.person-intro{margin:var(--v-sm) 0 0;color:var(--muted);font-size:13px;line-height:1.8}
+.person-tags{display:flex;flex-wrap:wrap;gap:6px;margin:var(--v-md) 0 0;padding:0;list-style:none}
+.person-tags li{padding:3px 9px;border-radius:var(--r-pill);background:var(--canvas);
+  color:var(--muted);font-size:11px}
+.person-book{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:var(--v-md);padding:12px 16px;border-radius:var(--r-md);text-decoration:none;
+  background:var(--teal-deep);color:#fff;font-size:14px;font-weight:700;transition:background .15s}
+.person-book:hover{background:var(--teal-deepest)}
+.person-locked{margin-top:var(--v-md);padding:11px 14px;border-radius:var(--r-md);
+  background:var(--canvas);border:1px dashed var(--line);color:var(--faint);
+  font-size:12px;line-height:1.6;text-align:center}
+.people-empty{margin:var(--v-md) 0 0;color:var(--faint);font-size:13px}
+
+/* S5: 通報導線（全画面に常設） */
+.help-fab{position:fixed;right:20px;bottom:20px;z-index:20;padding:12px 18px;border-radius:var(--r-pill);
+  text-decoration:none;background:#fff;border:1px solid var(--coralc);color:var(--coral-deep);
+  font-size:13px;font-weight:700;box-shadow:var(--shadow-elev)}
+.help-fab:hover{background:#FFF3F0}
+@media(max-width:720px){
+  .naname-main{padding:32px 20px 96px}
+  .people-grid{grid-template-columns:1fr}
+  .help-fab{right:14px;bottom:14px}
+}
