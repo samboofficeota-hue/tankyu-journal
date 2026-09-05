@@ -96,6 +96,8 @@ nanameya-volunteer(.html/.js) 大人：担当一覧・空き枠の登録
 nanameya-brief(.html/.js)     大人：対話前・対話中に読む探究カード
 nanameya-note(.html/.js)      大人：議事録（生徒向け1〜2行＋事務局向け）
 nanameya-admin(.html/.js)     事務局：議事録の受信箱・予約一覧・通報対応
+preview.html        全画面のプレビュー（node tools/build-preview.js で生成）
+tools/build-preview.js  実ファイルを読んで preview.html を組み立てる
 nanameya-mask.js    探究カードの許可リストと個人情報マスク（docs/nanameya-privacy.md が正本）
 login/student/teacher(.html/.js)  画面
 config.js           API_BASE / PORTAL_URL / DEMO

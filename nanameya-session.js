@@ -64,12 +64,20 @@ if (state === 'after') {
   el.hidden = false;
   el.innerHTML = `
     <h2 class="sess-note-title">${volunteer ? volunteer.name : ''} さんからの一言</h2>
-    <blockquote class="sess-quote">${draft}</blockquote>
+    <blockquote class="sess-quote" id="sess-draft">${draft}</blockquote>
     <p class="sess-note-desc">
-      これを、次の記録の「次に挑戦すること」に下書きとして入れておきます。
-      そのままでも、書きかえても、消してもかまいません。
+      次にジャーナルを書くとき、「次に挑戦すること」にこれを写してみてください。
+      そのままでも、書きかえても、やめてもかまいません。
     </p>
-    <a class="sess-enter" href="./student.html">次の記録をひらく <span aria-hidden="true">→</span></a>`;
+    <button type="button" class="sess-enter" id="sess-copy">この一言をコピーする</button>
+    <p class="sess-note-small">
+      ナナメの部屋はエスラボ、ジャーナルは学校のもの。
+      ここで話したことが自動でジャーナルに入ることはありません。
+    </p>`;
+  document.querySelector('#sess-copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(draft); } catch (_) { /* 失敗しても下に文は出ている */ }
+    document.querySelector('#sess-copy').textContent = 'コピーしました';
+  });
 }
 
 document.querySelector('#help-fab').addEventListener('click', (e) => {

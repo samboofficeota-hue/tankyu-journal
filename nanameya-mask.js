@@ -44,7 +44,7 @@ window.NANAMEYA_MASK = (() => {
       .replace(/@[A-Za-z0-9_]{2,}/g, REDACT)                                // SNSのID
       .replace(/0\d{1,4}-?\d{1,4}-?\d{3,4}/g, REDACT)                       // 電話番号
       .replace(/\d+丁目[\d-]*/g, REDACT)                                    // 住所
-      .replace(/[一-鿿぀-ゟ゠-ヿ]{1,10}(小学校|中学校|高等学校|高校)/g, '●●学校');
+      .replace(/[\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF]{1,10}(小学校|中学校|高等学校|高校)/g, '●●学校');
 
     return out;
   }
