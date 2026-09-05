@@ -112,6 +112,7 @@
 | 先生用 ナナメの部屋 | `teacher-nanameya.html` | C3 | T1・T2 | 未 |
 | **ボランティア募集・応募** | `nanameya-join.html` | **C5** | V0-1・V0-2 | 未 |
 | **応募ステータス（審査・誓約・研修）** | `nanameya-status.html` | **C5** | V0-3〜V0-5 | 未 |
+| 探究カード（対話前・対話中に読む） | `nanameya-brief.html` | C6 | V1 | ✅ モック |
 | ボランティア用 担当一覧・事後メモ | `nanameya-volunteer.html` | C6 | V1〜V3 | 未 |
 | 事務局用 管理画面 | `nanameya-admin.html` | C4 | E1〜E3 | 未 |
 

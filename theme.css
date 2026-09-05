@@ -529,3 +529,50 @@ a.portal-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-elev);bor
   .people-grid{grid-template-columns:1fr}
   .help-fab{right:14px;bottom:14px}
 }
+
+/* ─── ナナメの部屋：探究カード（大人が対話前／中に読む）─────────
+   docs/nanameya-privacy.md。個人情報は最初から渡さない前提の画面。 */
+.brief-status{margin-top:var(--v-xl);padding:20px 22px;border:1px solid var(--line);
+  border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow-card)}
+.brief-status-main{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.brief-badge{padding:4px 12px;border-radius:var(--r-pill);font-size:12px;font-weight:700}
+.brief-badge.is-wait{background:var(--teal-50);border:1px solid var(--teal-200);color:var(--teal-deepest)}
+.brief-badge.is-go{background:var(--teal-deep);color:#fff}
+.brief-badge.is-done{background:var(--canvas);border:1px solid var(--line);color:var(--muted)}
+.brief-when{font-size:17px}
+.brief-with{color:var(--muted);font-size:13px}
+.brief-status-note{margin:var(--v-sm) 0 0;color:var(--muted);font-size:13px;line-height:1.7}
+.brief-enter{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:var(--v-md);
+  padding:12px 20px;border-radius:var(--r-md);text-decoration:none;background:var(--teal-deep);color:#fff;
+  font-size:14px;font-weight:700}
+.brief-enter:hover{background:var(--teal-deepest)}
+.brief-enter.is-locked{background:var(--canvas);border:1px dashed var(--line);color:var(--faint);font-weight:400}
+
+.brief-who{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:var(--v-lg);
+  padding:16px 20px;border-radius:var(--r-lg);background:var(--teal-50);border:1px solid var(--teal-200)}
+.brief-avatar{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;
+  background:#fff;font-size:22px}
+.brief-nick{display:block;font-size:16px}
+.brief-masked{color:var(--teal-deepest);font-size:11px}
+.brief-src{margin-left:auto;color:var(--muted);font-size:12px}
+
+.brief-blocks{display:grid;gap:16px;margin-top:var(--v-lg)}
+.brief-block{padding:20px 22px;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;
+  box-shadow:var(--shadow-card)}
+.brief-block-label{margin:0 0 var(--v-sm);font-size:12px;font-weight:700;color:var(--teal-deep);
+  letter-spacing:.08em}
+.brief-block p{margin:0 0 var(--v-sm);font-size:15px;line-height:var(--lh-body)}
+.brief-block p:last-child{margin-bottom:0}
+
+.brief-expired{display:grid;place-items:center;gap:12px;text-align:center;margin-top:var(--v-lg);
+  padding:44px 20px;border:1px dashed var(--line);border-radius:var(--r-lg);background:var(--canvas);
+  color:var(--muted);line-height:1.9}
+.brief-expired[hidden]{display:none}
+.brief-expired-ico{font-size:30px}
+.brief-expired p{margin:0}
+
+.brief-rules{margin-top:var(--v-xl);padding:18px 22px;border-radius:var(--r-lg);
+  background:#FFFBEF;border:1px solid var(--amber)}
+.brief-rules b{font-size:13px}
+.brief-rules ul{margin:var(--v-sm) 0 0;padding-left:1.2em;color:var(--ink);font-size:13px;line-height:1.9}
+.brief-rules-note{margin:var(--v-sm) 0 0;color:var(--muted);font-size:12px;line-height:1.8}

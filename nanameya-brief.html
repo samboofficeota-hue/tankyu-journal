@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>探究カード | ナナメの部屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./nanameya-volunteer.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role">大人用</span>
+      </header>
+
+      <main class="naname-main">
+        <p class="eyebrow">BRIEF</p>
+        <h1 class="naname-title">探究カード</h1>
+        <p class="naname-lead">対話の前に、この子がいま何を追いかけているかだけ読んでおいてください。</p>
+
+        <!-- 対話の状態と入室 -->
+        <section class="brief-status" id="brief-status"></section>
+
+        <!-- 誰の記録か（学年＋ニックネームまで） -->
+        <section class="brief-who" id="brief-who"></section>
+
+        <!-- 探究の中身（許可リストの4ブロックのみ・自動マスク済み） -->
+        <section class="brief-blocks" id="brief-blocks"></section>
+
+        <!-- 期限切れ -->
+        <section class="brief-expired" id="brief-expired" hidden>
+          <span class="brief-expired-ico">🔒</span>
+          <p>この記録を見られる期間（対話の終了から24時間）が過ぎました。<br />
+             続きが必要なときは事務局にご連絡ください。</p>
+        </section>
+
+        <section class="brief-rules">
+          <b>お願い</b>
+          <ul>
+            <li>この内容は持ち出さないでください。コピー・保存・スクリーンショットはしないでください。</li>
+            <li>開いた記録は事務局に記録されます。</li>
+            <li>連絡先の交換はできません。</li>
+          </ul>
+          <p class="brief-rules-note">
+            学校名・組・出席番号・本名・先生のコメントは、はじめから渡していません。
+            本文中の個人情報も自動で伏せていますが、完全ではありません。
+            気になる記述があれば「困ったときは」から事務局へ。
+          </p>
+        </section>
+      </main>
+
+      <a class="help-fab" href="#" id="help-fab">困ったときは</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-mask.js"></script>
+    <script src="./nanameya-brief.js"></script>
+  </body>
+</html>
