@@ -576,3 +576,164 @@ a.portal-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-elev);bor
 .brief-rules b{font-size:13px}
 .brief-rules ul{margin:var(--v-sm) 0 0;padding-left:1.2em;color:var(--ink);font-size:13px;line-height:1.9}
 .brief-rules-note{margin:var(--v-sm) 0 0;color:var(--muted);font-size:12px;line-height:1.8}
+
+/* ─── ナナメの部屋：予約（生徒 S3・S4）───────────────────── */
+.book-person{display:flex;gap:16px;align-items:flex-start;margin-top:var(--v-lg);padding:22px 20px;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow-card)}
+.book-person-body{display:flex;flex-direction:column;gap:2px}
+.book-person-name{font-size:18px}
+.book-person-body .person-approach{align-self:flex-start;margin-top:var(--v-xs)}
+.book-step{margin-top:var(--v-xl);padding-top:var(--v-md);border-top:1px solid var(--line)}
+.book-step-title{display:flex;align-items:center;gap:10px;margin:0 0 var(--v-xs);font-size:17px}
+.book-step-title span{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;
+  background:var(--teal-deep);color:#fff;font-size:13px}
+.book-step-note{margin:0 0 var(--v-md);color:var(--muted);font-size:13px;line-height:1.8}
+.book-nick{width:min(100%,260px);height:52px;padding:0 14px;border:1px solid var(--line);
+  border-radius:var(--r-md);background:#fff;font:700 18px "Noto Sans JP",sans-serif;color:var(--ink)}
+.book-nick:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(48,188,167,.22);outline:none}
+.book-preview{padding:18px 20px;border:1px solid var(--teal-200);border-radius:var(--r-lg);
+  background:var(--teal-50)}
+.book-preview-head{display:flex;justify-content:space-between;gap:10px;padding-bottom:var(--v-sm);
+  margin-bottom:var(--v-sm);border-bottom:1px solid var(--teal-200);font-size:14px}
+.book-preview-head span{color:var(--muted);font-size:12px}
+.book-preview-block{margin-top:var(--v-md)}
+.book-preview-label{display:block;margin-bottom:2px;color:var(--teal-deep);font-size:11px;font-weight:700;
+  letter-spacing:.08em}
+.book-preview-block p{margin:0 0 4px;font-size:14px;line-height:1.85}
+.book-mask-note{margin:var(--v-sm) 0 0;color:var(--muted);font-size:12px;line-height:1.8}
+.book-agree{display:flex;align-items:flex-start;gap:10px;margin-top:var(--v-md);padding:14px 16px;
+  border:1px solid var(--line);border-radius:var(--r-md);background:#fff;font-size:14px;cursor:pointer}
+.book-agree input{margin-top:3px;width:18px;height:18px;accent-color:var(--teal-deep)}
+.book-slots{display:grid;gap:10px}
+.book-slots-note,.book-slots-lock{margin:0;color:var(--faint);font-size:12px}
+.book-slot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;
+  cursor:pointer;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;
+  font:400 15px "Noto Sans JP",sans-serif;color:var(--ink);text-align:left;transition:border-color .15s,background .15s}
+.book-slot:hover:not(:disabled){border-color:var(--teal);background:var(--teal-50)}
+.book-slot:disabled{opacity:.45;cursor:not-allowed}
+.book-slot span{color:var(--muted);font-size:12px}
+.book-timerex{width:100%;min-height:520px;border:1px solid var(--line);border-radius:var(--r-lg)}
+.book-rules{margin-top:var(--v-xl);padding-top:var(--v-md);border-top:1px solid var(--line);
+  color:var(--faint);font-size:12px;line-height:1.9}
+
+/* ─── ナナメの部屋：生徒の対話カード（S5・S6）───────────── */
+.sess-card{margin-top:var(--v-xl);padding:24px 22px;border:1px solid var(--line);border-radius:var(--r-lg);
+  background:#fff;box-shadow:var(--shadow-card)}
+.sess-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.sess-who{display:flex;align-items:center;gap:12px;margin-top:var(--v-md)}
+.sess-who b{display:block;font-size:16px}
+.sess-lead{margin:var(--v-md) 0 0;font-size:15px;line-height:var(--lh-body)}
+.sess-enter{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:var(--v-md);
+  padding:15px 24px;border-radius:var(--r-md);text-decoration:none;background:var(--teal-deep);color:#fff;
+  font-size:16px;font-weight:700}
+.sess-enter:hover{background:var(--teal-deepest)}
+.sess-enter.is-locked{background:var(--canvas);border:1px dashed var(--line);color:var(--faint);
+  font-size:14px;font-weight:400}
+.sess-note-small{margin:var(--v-sm) 0 0;color:var(--muted);font-size:12px}
+.sess-note{margin-top:var(--v-lg);padding:24px 22px;border:1px solid var(--teal-200);
+  border-radius:var(--r-lg);background:var(--teal-50)}
+.sess-note[hidden]{display:none}
+.sess-note-title{margin:0;font-size:14px;color:var(--teal-deep);letter-spacing:.06em}
+.sess-quote{margin:var(--v-md) 0 0;padding:16px 18px;border-left:4px solid var(--teal);border-radius:var(--r-sm);
+  background:#fff;font-size:16px;line-height:1.9}
+.sess-note-desc{margin:var(--v-md) 0 0;color:var(--muted);font-size:13px;line-height:1.8}
+.help-fab.is-strong{background:var(--coral-deep);border-color:var(--coral-deep);color:#fff}
+.help-fab.is-strong:hover{background:#cf4f34}
+
+/* ─── ナナメの部屋：大人の担当・空き枠（V1〜V3）─────────── */
+.vol-state{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:var(--v-xl);
+  padding:16px 20px;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff}
+.vol-me{font-size:16px}
+.vol-state-note{color:var(--muted);font-size:13px}
+.vol-cal{margin-left:auto;color:var(--muted);font-size:12px}
+.vol-list{display:grid;gap:10px}
+.vol-item{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 18px;
+  border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
+.vol-item-main b{display:block;font-size:15px}
+.vol-item-who{color:var(--muted);font-size:12px}
+.vol-item-badge{padding:3px 10px;border-radius:var(--r-pill);background:var(--canvas);
+  color:var(--muted);font-size:11px;font-weight:700}
+.vol-item-btn{margin-left:auto;padding:10px 16px;border-radius:var(--r-md);text-decoration:none;
+  border:1px solid var(--teal-200);background:var(--teal-50);color:var(--teal-deep);
+  font-size:13px;font-weight:700;white-space:nowrap}
+.vol-item-btn:hover{background:#fff;border-color:var(--teal)}
+.vol-item-btn.is-primary{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+.vol-item-btn.is-primary:hover{background:var(--teal-deepest)}
+.vol-item-btn.is-locked{background:var(--canvas);border:1px dashed var(--line);color:var(--faint);font-weight:400}
+.vol-empty{margin:0;color:var(--faint);font-size:13px}
+.vol-slots{display:grid;gap:10px}
+.vol-slot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;
+  border:1px solid var(--line);border-radius:var(--r-md);background:#fff;font-size:14px}
+.vol-slot span{color:var(--muted);font-size:12px}
+.vol-slot.is-taken{background:var(--teal-50);border-color:var(--teal-200)}
+.vol-slot-add{display:block;padding:15px 18px;border:1px dashed var(--teal-200);border-radius:var(--r-md);
+  background:var(--teal-50);color:var(--teal-deep);font-size:13px;font-weight:700;text-decoration:none;text-align:center}
+.vol-slot-add:hover{background:#fff;border-color:var(--teal)}
+
+/* ─── ナナメの部屋：議事録（V2）───────────────────────── */
+.note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:var(--v-xl);
+  padding:14px 18px;border-radius:var(--r-md);background:var(--teal-50);border:1px solid var(--teal-200)}
+.note-meta span{color:var(--muted);font-size:13px}
+.note-meta-link{margin-left:auto;color:var(--teal-deep);font-size:13px;font-weight:700}
+.note-block{margin-top:var(--v-xl);padding-top:var(--v-md);border-top:1px solid var(--line)}
+.note-label{margin:0 0 var(--v-xs);font-size:16px}
+.note-label em{margin-left:8px;padding:3px 8px;border-radius:var(--r-sm);background:var(--teal-50);
+  color:var(--teal-deep);font-style:normal;font-size:11px;font-weight:700}
+.note-help{margin:0 0 var(--v-sm);color:var(--muted);font-size:13px;line-height:1.85}
+.note-radios{display:flex;flex-wrap:wrap;gap:10px}
+.note-radios label{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;cursor:pointer;
+  border:1px solid var(--line);border-radius:var(--r-pill);background:#fff;font-size:13px}
+.note-radios input{accent-color:var(--teal-deep)}
+.note-radios label:has(input:checked){border-color:var(--teal);background:var(--teal-50);font-weight:700}
+.note-block textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:var(--r-md);
+  background:#fff;font:400 15px/1.85 "Noto Sans JP",sans-serif;color:var(--ink);resize:vertical}
+.note-block textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(48,188,167,.22);outline:none}
+.note-count{margin-top:4px;color:var(--faint);font-size:11px;text-align:right}
+.note-seen{margin:var(--v-xs) 0 0;color:var(--muted);font-size:12px}
+.note-seen.is-office{color:var(--teal-deep)}
+.note-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:var(--v-xl)}
+.note-submit{padding:15px 28px;border:0;border-radius:var(--r-md);background:var(--teal-deep);color:#fff;
+  font:700 15px "Noto Sans JP",sans-serif;cursor:pointer}
+.note-submit:hover{background:var(--teal-deepest)}
+.note-actions-note{color:var(--muted);font-size:12px}
+
+/* ─── ナナメの部屋：事務局（E2・E3）──────────────────── */
+.adm-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:var(--v-xl)}
+.adm-kpi{padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-lg);background:#fff}
+.adm-kpi strong{display:block;font-size:32px;line-height:1.2}
+.adm-kpi span{color:var(--muted);font-size:12px}
+.adm-kpi.is-warn{background:#FFFBEF;border-color:var(--amber)}
+.adm-kpi.is-alert{background:#FFF3F0;border-color:var(--coralc)}
+.adm-kpi.is-alert strong{color:var(--coral-deep)}
+.adm-list{display:grid;gap:10px}
+.adm-item{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;padding:16px 18px;
+  border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
+.adm-item.is-reported{background:#FFF3F0;border-color:var(--coralc)}
+.adm-item.is-unsubmitted{background:#FFFBEF;border-color:var(--amber)}
+.adm-item b{font-size:14px}
+.adm-item-sub{display:block;margin-top:2px;color:var(--muted);font-size:12px}
+.adm-item-body{margin:var(--v-sm) 0 0;font-size:13px;line-height:1.8}
+.adm-tag{display:inline-block;margin-right:8px;padding:2px 8px;border-radius:var(--r-pill);
+  background:var(--teal-50);color:var(--teal-deep);font-size:11px;font-weight:700}
+.adm-tag.is-office{background:var(--canvas);color:var(--muted)}
+.adm-item-actions{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.adm-btn{padding:9px 14px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;
+  color:var(--ink);font:700 12px "Noto Sans JP",sans-serif;cursor:pointer;white-space:nowrap}
+.adm-btn:hover{border-color:var(--teal)}
+.adm-btn.is-primary{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+.adm-btn.is-danger{background:#fff;border-color:var(--coral-deep);color:var(--coral-deep)}
+.adm-table{border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;overflow:hidden}
+.adm-row{display:grid;grid-template-columns:90px 1.2fr 1fr 110px;gap:12px;align-items:center;
+  padding:13px 18px;border-bottom:1px solid var(--line);font-size:13px}
+.adm-row:last-child{border-bottom:0}
+.adm-row.is-head{background:var(--canvas);color:var(--muted);font-size:11px;font-weight:700}
+.adm-status{font-size:11px;font-weight:700;color:var(--muted)}
+.adm-status.is-ended{color:var(--amber-ink)}
+.adm-status.is-reported{color:var(--coral-deep)}
+.adm-status.is-noted{color:var(--teal-deep)}
+@media(max-width:720px){
+  .adm-row{grid-template-columns:1fr 1fr;row-gap:4px}
+  .adm-row.is-head{display:none}
+  .vol-item-btn{margin-left:0}
+  .adm-item-actions{margin-left:0}
+}

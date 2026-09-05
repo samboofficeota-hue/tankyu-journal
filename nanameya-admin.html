@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事務局 | ナナメの部屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./portal.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role">事務局</span>
+      </header>
+
+      <main class="naname-main">
+        <p class="eyebrow">OFFICE</p>
+        <h1 class="naname-title">事務局</h1>
+        <p class="naname-lead">止まっているものが上に出ます。ここが詰まると安全確認が遅れます。</p>
+
+        <section class="adm-kpis" id="adm-kpis"></section>
+
+        <section class="naname-section" aria-labelledby="adm-alert-title">
+          <h2 class="naname-section-title" id="adm-alert-title">対応が要るもの</h2>
+          <div class="adm-list" id="adm-alert"></div>
+        </section>
+
+        <section class="naname-section" aria-labelledby="adm-inbox-title">
+          <h2 class="naname-section-title" id="adm-inbox-title">議事録の受信箱</h2>
+          <p class="naname-section-note">未提出（大人がまだ書いていない）→ 未確認（事務局がまだ見ていない）の順。</p>
+          <div class="adm-list" id="adm-inbox"></div>
+        </section>
+
+        <section class="naname-section" aria-labelledby="adm-all-title">
+          <h2 class="naname-section-title" id="adm-all-title">予約の一覧</h2>
+          <div class="adm-table" id="adm-all"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-admin.js"></script>
+  </body>
+</html>

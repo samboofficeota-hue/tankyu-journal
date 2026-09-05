@@ -90,7 +90,12 @@ index.html          /（portal へ転送）
 portal.html         エスラボ ポータル（サイトの入り口・ツールのタイル一覧）
 nanameya(.html/.js) ナナメの部屋（大人一覧・同意ゲート・通報導線／いまはモック）
 nanameya-data.js    ナナメの部屋のモックデータ（ボランティア／予約／生徒の記録）
-nanameya-brief(.html/.js)  大人が対話前・対話中に読む探究カード
+nanameya-book(.html/.js)      生徒：予約（同意ゲート＋相手に渡る内容の確認）
+nanameya-session(.html/.js)   生徒：対話カード（10分前にURL）／対話後の一言
+nanameya-volunteer(.html/.js) 大人：担当一覧・空き枠の登録
+nanameya-brief(.html/.js)     大人：対話前・対話中に読む探究カード
+nanameya-note(.html/.js)      大人：議事録（生徒向け1〜2行＋事務局向け）
+nanameya-admin(.html/.js)     事務局：議事録の受信箱・予約一覧・通報対応
 nanameya-mask.js    探究カードの許可リストと個人情報マスク（docs/nanameya-privacy.md が正本）
 login/student/teacher(.html/.js)  画面
 config.js           API_BASE / PORTAL_URL / DEMO

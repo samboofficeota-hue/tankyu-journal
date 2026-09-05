@@ -105,16 +105,16 @@
 | 画面 | ファイル | キャラ | シナリオ | 状態 |
 |---|---|---|---|---|
 | ナナメの部屋トップ（大人一覧） | `nanameya.html` | C1・C2 | S2・S3 | ✅ モック |
-| 大人の詳細 → 予約 | `nanameya-book.html` | C1・C2 | S3・S4 | 未 |
+| 大人の詳細 → 予約 | `nanameya-book.html` | C1・C2 | S3・S4 | ✅ モック |
 | ジャーナルからの導線・対話ステータス | `student.html` に追記 | C1・C2 | S1・S6 | 未 |
-| 対話カード（日時→10分前にURL）／対話後 | `nanameya-session.html` | C1・C2 | S5・S6 | 未 |
-| 議事録の入力 | `nanameya-note.html` | C6 | V2 | 未 |
+| 対話カード（日時→10分前にURL）／対話後 | `nanameya-session.html` | C1・C2 | S5・S6 | ✅ モック |
+| 議事録の入力 | `nanameya-note.html` | C6 | V2 | ✅ モック |
 | 先生用 ナナメの部屋 | `teacher-nanameya.html` | C3 | T1・T2 | 未 |
 | **ボランティア募集・応募** | `nanameya-join.html` | **C5** | V0-1・V0-2 | 未 |
 | **応募ステータス（審査・誓約・研修）** | `nanameya-status.html` | **C5** | V0-3〜V0-5 | 未 |
 | 探究カード（対話前・対話中に読む） | `nanameya-brief.html` | C6 | V1 | ✅ モック |
-| ボランティア用 担当一覧・事後メモ | `nanameya-volunteer.html` | C6 | V1〜V3 | 未 |
-| 事務局用 管理画面 | `nanameya-admin.html` | C4 | E1〜E3 | 未 |
+| ボランティア用 担当一覧・空き枠 | `nanameya-volunteer.html` | C6 | V1〜V3 | ✅ モック |
+| 事務局用 管理画面 | `nanameya-admin.html` | C4 | E2・E3 | ✅ モック |
 
 **進め方**：全画面をモックデータ（`nanameya-data.js`）で作り、6人分のシナリオが通ることを確認してから
 D1（volunteers / applications / consents / bookings / notes / reports）と API に差し替える。

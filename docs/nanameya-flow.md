@@ -130,13 +130,13 @@ stateDiagram-v2
 
 | # | 画面 | ファイル | 誰の画面 | 状態 |
 |---|---|---|---|---|
-| 1 | 空き枠の登録 | `nanameya-volunteer.html` | C6 大人 | 未 |
+| 1 | 空き枠の登録 | `nanameya-volunteer.html` | C6 大人 | ✅ モック |
 | 2 | 大人一覧（同意ゲート） | `nanameya.html` | C1 生徒 | ✅ モック |
-| 3 | 大人の詳細 → 予約 | `nanameya-book.html` | C1 生徒 | 未 |
-| 4 | 対話カード（日時 → 10分前にURL） | `nanameya-session.html` | C1 生徒 | 未 |
+| 3 | 大人の詳細 → 予約 | `nanameya-book.html` | C1 生徒 | ✅ モック |
+| 4 | 対話カード（日時 → 10分前にURL） | `nanameya-session.html` | C1 生徒 | ✅ モック |
 | 5 | 対話直前・対話中の準備（探究カード） | `nanameya-brief.html` | C6 大人 | ✅ モック |
-| 6 | 議事録の入力 | `nanameya-note.html` | C6 大人 | 未 |
-| 7 | 議事録の受信・確認 | `nanameya-admin.html` | C4 事務局 | 未 |
+| 6 | 議事録の入力 | `nanameya-note.html` | C6 大人 | ✅ モック |
+| 7 | 議事録の受信・確認 | `nanameya-admin.html` | C4 事務局 | ✅ モック |
 
 ## 7. この流れの未決事項
 
@@ -145,3 +145,14 @@ stateDiagram-v2
 - **開始10分前の判定をどこでやるか**（画面を開いた時のクライアント判定で足りるか、Queues＋通知が要るか）。
 - **no_show の扱い**（何分で無断キャンセル扱いにするか、生徒側の再予約をどうするか）。
 - **議事録の提出期限**（当日中か、翌日までか。未提出のリマインドを出すか）。
+
+---
+
+## 8. いまの状態
+
+シナリオ1の7画面はすべてモックで通る。次はここから。
+
+1. **TimeRexに登録して実物を確認**（Webhookに何が入るか／チーム機能で3〜5名を一元管理できるか）
+2. **D1テーブルとAPI**（bookings / notes / reports / consents）。
+   探究カードのマスクは必ず `/api/nanameya/brief` のサーバー側へ移す（フロントのマスクは保護にならない）
+3. **C5の導線**（募集・応募・審査・研修＝V0-1〜V0-5）と、**C3 先生の画面**（T1・T2）
