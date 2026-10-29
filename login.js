@@ -1,3 +1,9 @@
+// 「エスラボ ポータルへ戻る」の行き先（config.js の PORTAL_URL で差し替え可能）
+const portalBack = document.querySelector('#portal-back');
+if (portalBack && window.JOURNAL_CONFIG && window.JOURNAL_CONFIG.PORTAL_URL) {
+  portalBack.href = window.JOURNAL_CONFIG.PORTAL_URL;
+}
+
 const loginForm = document.querySelector('#student-login');
 const message = document.querySelector('#login-message');
 const gradeSel = document.querySelector('#grade');

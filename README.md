@@ -11,6 +11,8 @@ Apps Script + スプレッドシート版（旧）は読み取り5〜6秒と遅�
 生徒/先生 ── ブラウザ ──▶ Cloudflare Pages（静的 + /api Functions）──▶ D1（SQLite・エッジ）
 ```
 
+- 入り口: `portal.html`（エスラボ ポータル。`/` はここへ転送。各ツールへのタイルを並べる）
+- ナナメの部屋: `nanameya.html`（評価しない地域の大人との1対1対話。設計は [`docs/nanameya.md`](docs/nanameya.md)）
 - 生徒フロー: `login.html`（学年/組/番号）→ `student.html`（A〜Dを1枚で切替・提出でD1へ保存）
 - 先生フロー: `teacher.html`（生徒を選んで読取り→先生コメントをD1へ保存）
 - データ: 現行スプレッドシート「原外中_探究シート_加工用」の4タブ（0626/0629/0703/0714＝セッションA/B/C/D）を **d1/seed.sql に取り込み済み**（683行・176名）。以後は D1 が正本。
@@ -84,9 +86,21 @@ Build output directory = `/`（ビルド不要）。デプロイ後、
 ## ファイル構成
 
 ```
-index.html          /（login へ転送）
+index.html          /（portal へ転送）
+portal.html         エスラボ ポータル（サイトの入り口・ツールのタイル一覧）
+nanameya(.html/.js) ナナメの部屋（大人一覧・同意ゲート・通報導線／いまはモック）
+nanameya-data.js    ナナメの部屋のモックデータ（ボランティア／予約／生徒の記録）
+nanameya-book(.html/.js)      生徒：予約（同意ゲート＋相手に渡る内容の確認）
+nanameya-session(.html/.js)   生徒：対話カード（10分前にURL）／対話後の一言
+nanameya-volunteer(.html/.js) 大人：担当一覧・空き枠の登録
+nanameya-brief(.html/.js)     大人：対話前・対話中に読む探究カード
+nanameya-note(.html/.js)      大人：議事録（生徒向け1〜2行＋事務局向け）
+nanameya-admin(.html/.js)     事務局：議事録の受信箱・予約一覧・通報対応
+preview.html        全画面のプレビュー（node tools/build-preview.js で生成）
+tools/build-preview.js  実ファイルを読んで preview.html を組み立てる
+nanameya-mask.js    探究カードの許可リストと個人情報マスク（docs/nanameya-privacy.md が正本）
 login/student/teacher(.html/.js)  画面
-config.js           API_BASE / DEMO
+config.js           API_BASE / PORTAL_URL / DEMO
 schema.js           セッション定義と質問→列マッピング
 api.js              API クライアント（/api・デモフォールバック付き）
 functions/api/*.js  Pages Functions（read/save/list/export + _shared）

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>エスラボ ポータル</title>
+    <meta name="description" content="エスラボのツールの入り口。My 探究ジャーナルなど、使うものをここから選びます。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="portal-page">
+    <main class="portal-shell">
+      <header class="portal-head">
+        <div class="portal-brand"><span class="brand-mark">✦</span><span>エスラボ</span></div>
+        <p class="eyebrow">ESLAB PORTAL</p>
+        <h1 class="portal-title">エスラボ ポータル</h1>
+        <p class="portal-lead">エスラボのツールの入り口です。使うものを選んでください。</p>
+      </header>
+
+      <section class="portal-section" aria-labelledby="portal-now-title">
+        <h2 class="portal-section-title" id="portal-now-title">いま使えるもの</h2>
+        <div class="portal-grid">
+          <a class="portal-tile" href="./login.html">
+            <span class="portal-ico">📓</span>
+            <b class="portal-name">探究ジャーナル（生徒）</b>
+            <span class="portal-desc">学年・組・番号でひらいて、探究の記録を書く。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+          <a class="portal-tile" href="./teacher.html">
+            <span class="portal-ico">🧑‍🏫</span>
+            <b class="portal-name">探究ジャーナル（先生）</b>
+            <span class="portal-desc">授業の設計・ダッシュボード・コメント記入・AI分析。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+          <a class="portal-tile" href="./nanameya-login-student.html">
+            <span class="portal-ico">🛋️</span>
+            <b class="portal-name">ナナメの部屋（生徒）</b>
+            <span class="portal-desc">評価しない地域の大人と、問いの続きを1対1で話す。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+          <a class="portal-tile" href="./nanameya-login-volunteer.html">
+            <span class="portal-ico">🤝</span>
+            <b class="portal-name">ナナメの部屋（大人）</b>
+            <span class="portal-desc">空いている時間を出す。探究カードを読む。議事録を残す。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+          <a class="portal-tile" href="./nanameya-admin.html">
+            <span class="portal-ico">🛡️</span>
+            <b class="portal-name">ナナメの部屋（事務局）</b>
+            <span class="portal-desc">議事録の受信箱・予約一覧・通報対応。</span>
+            <span class="portal-arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="portal-section" aria-labelledby="portal-soon-title">
+        <h2 class="portal-section-title" id="portal-soon-title">準備中</h2>
+        <!-- ▼ 公開するときは <div class="portal-tile is-soon"> を
+             <a class="portal-tile" href="./◯◯.html"> に変え、
+             .portal-badge を .portal-arrow（→）に差し替えてください。 -->
+        <div class="portal-grid">
+          <div class="portal-tile is-soon">
+            <span class="portal-ico">🏫</span>
+            <b class="portal-name">学校ごとの管理</b>
+            <span class="portal-desc">複数校の登録・切り替え、学校ごとのジャーナル管理。</span>
+            <span class="portal-badge">準備中</span>
+          </div>
+          <div class="portal-tile is-soon">
+            <span class="portal-ico">📝</span>
+            <b class="portal-name">ナナメの大人になる</b>
+            <span class="portal-desc">募集・応募・審査・研修（C5の導線）。</span>
+            <span class="portal-badge">準備中</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="portal-foot">エスラボ</footer>
+    </main>
+  </body>
+</html>

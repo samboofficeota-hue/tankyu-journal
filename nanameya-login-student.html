@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナナメの部屋に入る（生徒）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-shell">
+      <a class="portal-back" href="./portal.html"><span aria-hidden="true">←</span> エスラボ ポータルへ戻る</a>
+      <div class="login-brand"><span class="brand-mark">✦</span><span>ナナメの部屋</span></div>
+
+      <section class="login-card" aria-labelledby="login-title">
+        <p class="eyebrow">STUDENT LOGIN</p>
+        <h1 id="login-title">ナナメの部屋に入る</h1>
+        <p class="login-lead">学年・組を選び、番号を入れてください。</p>
+        <form id="naname-student-login" data-next="./nanameya-home-student.html">
+          <div class="login-fields">
+            <label>学年
+              <select id="grade" required>
+                <option value="" disabled selected>―</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+            <label>組
+              <select id="class" required disabled>
+                <option value="" disabled selected>―</option>
+              </select>
+            </label>
+            <label>番号
+              <input id="number" inputmode="numeric" maxlength="2" placeholder="12" required />
+            </label>
+          </div>
+          <p class="login-message" id="login-message" aria-live="polite"></p>
+          <button class="primary login-submit" type="submit">部屋に入る</button>
+        </form>
+      </section>
+
+      <p class="login-foot-note">
+        ここで話したことは成績に関係しません。連絡先の交換はできない決まりです。
+      </p>
+    </main>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-login-student.js"></script>
+  </body>
+</html>

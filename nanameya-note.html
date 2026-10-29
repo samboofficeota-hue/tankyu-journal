@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>議事録 | ナナメの部屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./nanameya-volunteer.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role">議事録</span>
+      </header>
+
+      <main class="naname-main">
+        <p class="eyebrow">MINUTES</p>
+        <h1 class="naname-title">議事録</h1>
+        <p class="naname-lead">2〜3分で終わります。長く書かないでください。</p>
+
+        <section class="note-meta" id="note-meta"></section>
+
+        <form id="note-form">
+          <section class="note-block">
+            <h2 class="note-label">対話はできましたか</h2>
+            <div class="note-radios">
+              <label><input type="radio" name="held" value="held" checked /> 話せた</label>
+              <label><input type="radio" name="held" value="short" /> 途中で終わった</label>
+              <label><input type="radio" name="held" value="no_show" /> 生徒が来なかった</label>
+              <label><input type="radio" name="held" value="trouble" /> つながらなかった</label>
+            </div>
+          </section>
+
+          <section class="note-block">
+            <h2 class="note-label">生徒に渡す一言 <em>必須・1〜2行</em></h2>
+            <p class="note-help">
+              <b>次にやってみるといいこと</b>を1つだけ。感想や評価ではなく、明日できる具体を。
+              これがそのまま、生徒の次の記録の「次に挑戦すること」の下書きになります。
+            </p>
+            <textarea id="note-student" maxlength="120" rows="3"
+              placeholder="商店街のお店に「いつから続いているか」だけ聞いてみる。まず1軒。"></textarea>
+            <div class="note-count"><span id="note-count">0</span> / 120</div>
+            <p class="note-seen">👀 生徒と事務局が読みます</p>
+          </section>
+
+          <section class="note-block">
+            <h2 class="note-label">事務局へ <em>任意</em></h2>
+            <p class="note-help">気になったこと、次に会う人に伝えておきたいこと。無ければ空でかまいません。</p>
+            <textarea id="note-office" rows="3" placeholder="落ち着いて話せていた。特に気になることはなし。"></textarea>
+            <p class="note-seen is-office">🔒 事務局だけが読みます（生徒には見えません）</p>
+          </section>
+
+          <div class="note-actions">
+            <button type="submit" class="note-submit">議事録を出す</button>
+            <span class="note-actions-note">出すと、生徒の下書きに反映され、事務局に届きます。</span>
+          </div>
+        </form>
+      </main>
+
+      <a class="help-fab" href="#" id="help-fab">困ったときは</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-note.js"></script>
+  </body>
+</html>

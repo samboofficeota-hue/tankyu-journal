@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>予約する | ナナメの部屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./nanameya.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role">予約</span>
+      </header>
+
+      <main class="naname-main">
+        <a class="portal-back" href="./nanameya.html"><span aria-hidden="true">←</span> ほかの大人を見る</a>
+
+        <!-- 選んだ大人 -->
+        <section class="book-person" id="book-person"></section>
+
+        <!-- S3: 同意ゲート -->
+        <section class="consent-gate" id="consent-gate" hidden>
+          <span class="consent-ico">🏠</span>
+          <div>
+            <b class="consent-name">まず、おうちの人の同意が必要です</b>
+            <p class="consent-desc">同意が確認できると、ここに空いている時間が出ます。</p>
+            <a class="consent-btn" href="#" id="consent-start">おうちの人に見せる説明をひらく</a>
+          </div>
+        </section>
+
+        <div id="book-flow" hidden>
+          <!-- STEP 1 何と呼ばれたいか -->
+          <section class="book-step">
+            <h2 class="book-step-title"><span>1</span>なんて呼ばれたい？</h2>
+            <p class="book-step-note">本名じゃなくて大丈夫。この名前だけが相手に伝わります。</p>
+            <input class="book-nick" id="book-nick" maxlength="12" placeholder="みなと" value="みなと" />
+          </section>
+
+          <!-- STEP 2 相手に渡るものを本人が確認する -->
+          <section class="book-step">
+            <h2 class="book-step-title"><span>2</span>相手に見えるのはこれだけ</h2>
+            <p class="book-step-note">
+              あなたの記録から、この4つだけが相手に届きます。
+              学校名・組・出席番号・本名・先生のコメントは届きません。
+            </p>
+            <div class="book-preview" id="book-preview"></div>
+            <p class="book-mask-note">
+              ●● は自動で伏せたところです。ほかにも見せたくないことが書いてあったら、
+              記録を直してから予約してください。
+            </p>
+            <label class="book-agree">
+              <input type="checkbox" id="book-agree" />
+              この内容を相手に見せることに同意します
+            </label>
+          </section>
+
+          <!-- STEP 3 空き枠 -->
+          <section class="book-step">
+            <h2 class="book-step-title"><span>3</span>空いている時間を選ぶ</h2>
+            <p class="book-step-note">15〜20分です。だいたいの時間でだいじょうぶ。</p>
+            <div class="book-slots" id="book-slots"></div>
+          </section>
+
+          <p class="book-rules">
+            話したことは成績に関係しません。連絡先の交換はできない決まりです。
+            通話のリンクは、はじまる10分前にここに出ます。
+          </p>
+        </div>
+      </main>
+
+      <a class="help-fab" href="#" id="help-fab">困ったときは</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-mask.js"></script>
+    <script src="./nanameya-book.js"></script>
+  </body>
+</html>

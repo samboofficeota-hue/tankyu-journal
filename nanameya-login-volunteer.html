@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナナメの部屋に入る（大人）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-shell">
+      <a class="portal-back" href="./portal.html"><span aria-hidden="true">←</span> エスラボ ポータルへ戻る</a>
+      <div class="login-brand"><span class="brand-mark">✦</span><span>ナナメの部屋</span></div>
+
+      <section class="login-card" aria-labelledby="login-title">
+        <p class="eyebrow">VOLUNTEER LOGIN</p>
+        <h1 id="login-title">ナナメの部屋に入る</h1>
+        <p class="login-lead">登録したメールアドレスを入れてください。ログイン用のリンクをお送りします。</p>
+        <form id="naname-volunteer-login" data-next="./nanameya-home-volunteer.html">
+          <label class="login-single">メールアドレス
+            <input id="email" type="email" inputmode="email" placeholder="you@example.com" required />
+          </label>
+          <p class="login-message" id="login-message" aria-live="polite"></p>
+          <button class="primary login-submit" type="submit">ログイン用のリンクを送る</button>
+        </form>
+      </section>
+
+      <p class="login-foot-note">
+        ログインできるのは、面談・身分確認・行動規範への署名・研修を終えて承認された方だけです。
+        応募や審査の状況は、募集ページからご確認ください。
+      </p>
+    </main>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-login-volunteer.js"></script>
+  </body>
+</html>

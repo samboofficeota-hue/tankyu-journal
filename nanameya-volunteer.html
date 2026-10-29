@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>担当と空き枠 | ナナメの部屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./nanameya-home-volunteer.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role" id="vol-role">大人用</span>
+      </header>
+
+      <main class="naname-main">
+        <p class="eyebrow">VOLUNTEER</p>
+        <h1 class="naname-title" id="vol-title">担当と空き枠</h1>
+        <p class="naname-lead">やることは2つだけ。空いている時間を出すことと、話したあとに一言残すこと。</p>
+
+        <section class="vol-state" id="vol-state"></section>
+
+        <section class="naname-section" aria-labelledby="vol-todo-title">
+          <h2 class="naname-section-title" id="vol-todo-title">あなたの番</h2>
+          <p class="naname-section-note">議事録がまだのものを先に出しています。</p>
+          <div class="vol-list" id="vol-todo"></div>
+        </section>
+
+        <section class="naname-section" aria-labelledby="vol-next-title">
+          <h2 class="naname-section-title" id="vol-next-title">これからの対話</h2>
+          <div class="vol-list" id="vol-next"></div>
+        </section>
+
+        <section class="naname-section" aria-labelledby="vol-slot-title">
+          <h2 class="naname-section-title" id="vol-slot-title">空いている時間</h2>
+          <p class="naname-section-note">
+            ここに出した時間だけが生徒に見えます。カレンダーで埋まっている時間には予約が入りません。
+          </p>
+          <div class="vol-slots" id="vol-slots"></div>
+        </section>
+
+        <section class="naname-section" aria-labelledby="vol-done-title">
+          <h2 class="naname-section-title" id="vol-done-title">おわった対話</h2>
+          <div class="vol-list" id="vol-done"></div>
+        </section>
+      </main>
+
+      <a class="help-fab" href="#" id="help-fab">困ったときは</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-volunteer.js"></script>
+  </body>
+</html>

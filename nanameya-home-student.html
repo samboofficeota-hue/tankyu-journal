@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナナメの部屋（生徒）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./design-refresh.css" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body class="naname-menu-page">
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./portal.html"><span class="brand-mark">✦</span> ナナメの部屋</a>
+        <span class="topbar-role" id="who"></span>
+      </header>
+
+      <main class="menu-main">
+        <p class="eyebrow">NANAME NO HEYA</p>
+        <h1 class="menu-title">あなたの部屋</h1>
+        <p class="home-lead">評価しない地域の大人と、問いの続きを話す場所です。準備はいりません。</p>
+
+        <!-- S3: 保護者同意が未取得なら、まずこれだけを出す -->
+        <section class="consent-gate" id="consent-gate" hidden>
+          <span class="consent-ico">🏠</span>
+          <div>
+            <b class="consent-name">まず、おうちの人の同意が必要です</b>
+            <p class="consent-desc">
+              はじめて話す前に、保護者の方の同意をもらってください。同意が確認できると、予約できるようになります。
+            </p>
+            <a class="consent-btn" href="#" id="consent-start">おうちの人に見せる説明をひらく</a>
+          </div>
+        </section>
+
+        <!-- 次の対話 / 前回の対話（S5・S6） -->
+        <section id="home-cards"></section>
+
+        <!-- 部屋のメニュー -->
+        <section class="naname-section" aria-labelledby="home-menu-title">
+          <h2 class="naname-section-title" id="home-menu-title">できること</h2>
+          <div class="menu-grid" id="home-menu"></div>
+        </section>
+
+        <p class="naname-foot-note">
+          ここで話したことは成績に関係しません。連絡先の交換はできない決まりです。
+          こまったら、右下のボタンをいつでも押してください。
+        </p>
+      </main>
+
+      <a class="help-fab" href="#" id="help-fab">困ったときは</a>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./nanameya-data.js"></script>
+    <script src="./nanameya-home-student.js"></script>
+  </body>
+</html>
